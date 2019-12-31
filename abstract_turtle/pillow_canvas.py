@@ -23,7 +23,7 @@ class PillowCanvas(Canvas):
 
     @staticmethod
     def tr_color(color):
-        return color.red, color.blue, color.green, 255
+        return color.red, color.green, color.blue, 255
 
     def draw_rectangular_line(self, start, end, color, width):
         self.draw.line([self.tr_pos(start), self.tr_pos(end)], self.tr_color(color), width)
