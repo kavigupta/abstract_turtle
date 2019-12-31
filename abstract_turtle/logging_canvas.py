@@ -1,5 +1,5 @@
 
-from abstract_turtle.abstract_turtle import Canvas
+from abstract_turtle.canvas import Canvas
 
 class LoggingCanvas(Canvas):
     def __init__(self, width, height):

@@ -3,7 +3,7 @@ from math import sin, cos, pi
 from PIL import Image, ImageDraw
 import numpy as np
 
-from .abstract_turtle import Canvas
+from .canvas import Canvas
 from .model import Color
 
 
