@@ -93,8 +93,19 @@ class BasicSquareTest(unittest.TestCase):
 
     def test_background(self):
         t = self.turtle
+        t.pencolor(255, 255, 255)
         t.fd(100)
         t.bgcolor(255, 255, 0)
         t.rt(90)
         t.fd(100)
         self.assertImageEquals("img/background_test.png")
+
+    def test_multicolor(self):
+        t = self.turtle
+        t.pencolor(255, 255, 0)
+        t.fd(100)
+        t.pencolor(0, 255, 255)
+        t.fd(100)
+        t.pencolor(0, 255, 0)
+        t.fd(100)
+        self.assertImageEquals("img/multicolor.png")
