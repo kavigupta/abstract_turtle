@@ -90,3 +90,11 @@ class BasicSquareTest(unittest.TestCase):
         t.circle(100)
         t.fd(100)
         self.assertImageEquals("img/thick_circle.png")
+
+    def test_background(self):
+        t = self.turtle
+        t.fd(100)
+        t.bgcolor(255, 255, 0)
+        t.rt(90)
+        t.fd(100)
+        self.assertImageEquals("img/background_test.png")

@@ -152,6 +152,9 @@ class BaseTurtle:
         """
         self.__canvas.clear()
 
+    def bgcolor(self, *color):
+        self.__canvas.set_bgcolor(self.__convert_color(*color))
+
     @property
     def __current_pos(self):
         return Position(self.__x, self.__y)
