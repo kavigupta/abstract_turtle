@@ -70,7 +70,7 @@ class BaseTurtle:
         self.__x = 0
         self.__y = 0
         self.__line_width = 1
-        self.__theta = 0
+        self.__theta = pi/2
         self.__pen_color = Color(0, 0, 0)
         self.__fill_color = Color(0, 0, 0)
         self.__pen_down = True
@@ -88,6 +88,14 @@ class BaseTurtle:
         if self.filling():
             self.__polygon.append(self.__current_pos)
     setpos = setposition = goto
+
+    def forward(self, amount):
+        """
+        Move forward the given amount.
+        """
+        print(self.heading(), self.__theta)
+        self.goto(self.xcor() + amount * cos(self.__theta), self.ycor() + amount * sin(self.__theta))
+    fd = forward
 
     def setheading(self, heading):
         """
@@ -222,13 +230,6 @@ class Turtle(BaseTurtle):
     """
     This entire class should only use public methods of the BaseTurtle class.
     """
-
-    def forward(self, amount):
-        """
-        Move forward the given amount.
-        """
-        self.goto(self.xcor() + amount * cos(pi / 180 * self.heading()), self.xcor() + amount * sin(pi / 180 * self.heading()))
-    fd = forward
 
     def backward(self, amount):
         """
