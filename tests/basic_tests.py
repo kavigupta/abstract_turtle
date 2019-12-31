@@ -30,6 +30,6 @@ class BasicSquareTest(unittest.TestCase):
         self.assertPositionAlmostEqual(t, (0, 0))
 
         self.assertEqual(
-            {'draw_rectangular_line' : 4, 'draw_circle' : 8},
+            {'draw_rectangular_line' : 4},
             Counter([func for func, *_ in canvas.log])
         )

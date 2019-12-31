@@ -14,9 +14,11 @@ class Canvas(ABC):
         pass
 
     def draw_line(self, start, end, color, width):
-        self.draw_circle(start, width / 2, color, width, True)
+        if width > 1:
+            self.draw_circle(start, width / 2, color, width, True)
         self.draw_rectangular_line(start, end, color, width)
-        self.draw_circle(end, width / 2, color, width, True)
+        if width > 1:
+            self.draw_circle(end, width / 2, color, width, True)
 
     @abstractmethod
     def draw_circle(self, center, radius, color, width, is_filled):
