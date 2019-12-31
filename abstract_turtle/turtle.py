@@ -60,7 +60,7 @@ class BaseTurtle:
         if size is None:
             size = max(self.__line_width + 4, self.__line_width * 2)
         if self.__pen_down:
-            self.__canvas.draw_circle(self.__current_pos, size, self.__line_width, self.__pen_color, True)
+            self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True)
 
     def xcor(self):
         """
@@ -237,12 +237,12 @@ class Turtle(BaseTurtle):
         """
         return self.degrees(2 * pi)
 
-    def color(self, color):
+    def color(self, *color):
         """
         Set both the pen and fill colors
         """
-        self.pencolor(color)
-        self.fillcolor(color)
+        self.pencolor(*color)
+        self.fillcolor(*color)
 
     def reset(self):
         self.home()
