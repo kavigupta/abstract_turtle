@@ -109,3 +109,13 @@ class BasicSquareTest(unittest.TestCase):
         t.pencolor(0, 255, 0)
         t.fd(100)
         self.assertImageEquals("img/multicolor.png")
+
+    def test_multi_directions(self):
+        t = self.turtle
+        for _ in range(8):
+            t.fd(20)
+            t.pu()
+            t.fd(10)
+            t.pd()
+            t.rt(45)
+        self.assertImageEquals("img/multi_directions.png")
