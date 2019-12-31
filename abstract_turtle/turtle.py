@@ -50,7 +50,7 @@ class BaseTurtle:
         Draw a circle at the given point with the given RADIUS
         """
         if self.__pen_down:
-            self.__canvas.draw_circle(self.__current_pos, radius, self.__line_width, self.__pen_color, True)
+            self.__canvas.draw_circle(self.__current_pos, radius, self.__pen_color, self.__line_width, False)
 
     def dot(self, size=None):
         """
@@ -60,7 +60,7 @@ class BaseTurtle:
         if size is None:
             size = max(self.__line_width + 4, self.__line_width * 2)
         if self.__pen_down:
-            self.__canvas.draw_circle(self.__current_pos, size, self.__line_width, self.__pen_color, False)
+            self.__canvas.draw_circle(self.__current_pos, size, self.__line_width, self.__pen_color, True)
 
     def xcor(self):
         """

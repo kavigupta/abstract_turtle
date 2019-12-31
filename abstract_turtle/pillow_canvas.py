@@ -36,7 +36,7 @@ class PillowCanvas(Canvas):
         if is_filled:
             self.draw.ellipse(box, fill=self.tr_color(color))
         else:
-            circle(self.draw, x, y, radius, color, width=width)
+            circle(self.draw, x, y, radius, self.tr_color(color), width=width)
 
     def fill_polygon(self, points, color):
         self.draw.polygon(
