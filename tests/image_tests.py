@@ -32,3 +32,13 @@ class BasicSquareTest(unittest.TestCase):
                 t.rt(90)
             t.rt(10)
         self.assertImageEquals("img/squareflower.png")
+
+    def test_empty_star(self):
+        t = self.turtle
+        t.lt(18)
+        for _ in range(5):
+            t.fd(100)
+            t.lt(180 - 36)
+            t.fd(100)
+            t.rt(72)
+        self.assertImageEquals("img/empty_star.png")

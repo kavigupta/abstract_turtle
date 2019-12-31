@@ -6,7 +6,8 @@ class Color:
     red = attr.ib()
     green = attr.ib()
     blue = attr.ib()
-    def of(self, *color):
+    @staticmethod
+    def of(*color):
         if len(color) == 3:
             if any(not isinstance(c, int) for c in color):
                 raise RuntimeError("Not a valid color: %s" % color)

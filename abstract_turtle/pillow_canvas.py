@@ -19,7 +19,7 @@ class PillowCanvas(Canvas):
 
     def tr_pos(self, pos):
         x, y = pos.x, pos.y
-        return x + self.width / 2, y + self.height / 2
+        return x + self.width / 2, -y + self.height / 2
 
     @staticmethod
     def tr_color(color):

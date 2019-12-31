@@ -119,13 +119,13 @@ class BaseTurtle:
         """
         Set the pen color as COLOR
         """
-        self.__pen_color = self.__convert_color(color)
+        self.__pen_color = self.__convert_color(*color)
 
     def fillcolor(self, *color):
         """
         Set the fill color as COLOR
         """
-        self.__fill_color = self.__convert_color(color)
+        self.__fill_color = self.__convert_color(*color)
 
     def filling(self):
         """
@@ -163,7 +163,7 @@ class BaseTurtle:
         return 90 - angle * self.__degrees / (2 * pi)
 
     @staticmethod
-    def __convert_color(color):
+    def __convert_color(*color):
         return Color.of(*color)
 
 
