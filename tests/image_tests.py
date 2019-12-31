@@ -8,7 +8,7 @@ from abstract_turtle.turtle import Turtle
 from abstract_turtle.pillow_canvas import PillowCanvas
 
 # set this to true to create the images
-REFRESH_IMAGES = False
+REFRESH_IMAGES = True
 
 class BasicSquareTest(unittest.TestCase):
 
@@ -33,6 +33,27 @@ class BasicSquareTest(unittest.TestCase):
             t.rt(10)
         self.assertImageEquals("img/squareflower.png")
 
+    def test_centeredness(self):
+        t = self.turtle
+        t.setpos(0, 100)
+        t.setpos(0, -100)
+        t.setpos(0, 0)
+        t.setpos(100, 0)
+        t.setpos(-100, 0)
+        t.setpos(0, 0)
+        t.width(20)
+        t.setpos(0, 0)
+        t.rt(45)
+        t.fd(100)
+        self.assertImageEquals("img/centeredness.png")
+
+    def test_multisegment_forward(self):
+        t = self.turtle
+        t.width(20)
+        for _ in range(3):
+            t.fd(100)
+        self.assertImageEquals("img/multiseg_forward.png")
+
     def test_empty_star(self):
         t = self.turtle
         t.lt(18)
@@ -42,3 +63,17 @@ class BasicSquareTest(unittest.TestCase):
             t.fd(100)
             t.rt(72)
         self.assertImageEquals("img/empty_star.png")
+
+    def test_full_star(self):
+        t = self.turtle
+        t.fillcolor(255, 0, 0)
+        t.width(10)
+        t.begin_fill()
+        t.lt(18)
+        for _ in range(5):
+            t.fd(100)
+            t.lt(180 - 36)
+            t.fd(100)
+            t.rt(72)
+        t.end_fill()
+        self.assertImageEquals("img/full_star.png")

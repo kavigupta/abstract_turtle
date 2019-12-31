@@ -7,11 +7,16 @@ class Canvas(ABC):
         self.height = height
 
     @abstractmethod
-    def draw_line(self, start, end, color, width):
+    def draw_rectangular_line(self, start, end, color, width):
         """
         Draw a 1 width line from START to END with the given color COLOR
         """
         pass
+
+    def draw_line(self, start, end, color, width):
+        self.draw_circle(start, width / 2, color, width, True)
+        self.draw_rectangular_line(start, end, color, width)
+        self.draw_circle(end, width / 2, color, width, True)
 
     @abstractmethod
     def draw_circle(self, center, radius, color, width, is_filled):
