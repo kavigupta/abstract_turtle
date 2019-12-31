@@ -3,7 +3,8 @@ from math import sin, cos, pi
 from PIL import Image, ImageDraw
 import numpy as np
 
-from .abstract_turtle import Canvas, Color
+from .abstract_turtle import Canvas
+from .model import Color
 
 
 class PillowCanvas(Canvas):
