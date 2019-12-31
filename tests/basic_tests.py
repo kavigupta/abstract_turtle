@@ -55,6 +55,18 @@ class BasicSquareTest(unittest.TestCase):
         self.assertAlmostEqual(0, t.heading())
         self.assertPositionAlmostEqual(t, (0, 0))
 
+    def test_pensize(self):
+        t = self.turtle
+        self.assertEqual(1, t.pensize())
+        t.pensize(10)
+        self.assertEqual(10, t.pensize())
+
+    def test_penupdown(self):
+        t = self.turtle
+        self.assertEqual(True, t.isdown())
+        t.penup()
+        self.assertEqual(False, t.isdown())
+
     def test_distance(self):
         t1 = self.turtle
         t1.setpos(3, 8)

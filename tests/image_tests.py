@@ -130,3 +130,55 @@ class BasicSquareTest(unittest.TestCase):
         t.setheading(45)
         t.fd(100)
         self.assertImageEquals("img/set_various_things.png")
+
+    def test_dot(self):
+        t = self.turtle
+        t.width(50)
+        t.dot()
+        t.pencolor(0, 0, 255)
+        t.dot(50)
+
+        t.width(1)
+        t.pencolor(255, 0, 0)
+        t.fd(50)
+        t.pencolor(0, 255, 0)
+        t.fd(50)
+        self.assertImageEquals("img/dot.png")
+
+    def test_backward(self):
+        t = self.turtle
+        t.fd(100)
+        t.rt(45)
+        t.bk(100)
+        self.assertImageEquals("img/bk.png")
+
+    def test_clear(self):
+        t = self.turtle
+        t.fd(100)
+        t.rt(45)
+        t.bgcolor(255, 0, 0)
+        t.clear()
+        t.rt(90)
+        t.fd(100)
+        self.assertImageEquals("img/clear.png")
+
+    def test_reset(self):
+        t = self.turtle
+        t.fd(100)
+        t.rt(45)
+        t.bgcolor(255, 0, 0)
+        t.reset()
+        t.rt(90)
+        t.fd(100)
+        self.assertImageEquals("img/reset.png")
+
+    def test_color(self):
+        t = self.turtle
+        for _ in range(2):
+            t.fd(100)
+            for _ in range(4):
+                t.fd(10)
+                t.rt(90)
+            t.fd(100)
+            t.color(255, 0, 0)
+        self.assertImageEquals("img/test_color.png")
