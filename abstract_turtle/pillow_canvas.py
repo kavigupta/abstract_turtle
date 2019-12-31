@@ -24,7 +24,7 @@ class PillowCanvas(Canvas):
     def tr_color(color):
         return color.red, color.blue, color.green, 255
 
-    def draw_line(self, start, end, width, color):
+    def draw_line(self, start, end, color, width):
         self.draw.line([self.tr_pos(start), self.tr_pos(end)], self.tr_color(color), width)
 
     def draw_circle(self, center, radius, color, width, is_filled):

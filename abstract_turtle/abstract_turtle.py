@@ -82,7 +82,7 @@ class BaseTurtle:
         Go to the given position (X, Y).
         """
         if self.__pen_down:
-            self.__canvas.draw_line(self.__current_pos, Position(x, y), self.__line_width, self.__pen_color)
+            self.__canvas.draw_line(self.__current_pos, Position(x, y), self.__pen_color, self.__line_width)
         self.__x = x
         self.__y = y
         if self.filling():
@@ -93,7 +93,6 @@ class BaseTurtle:
         """
         Move forward the given amount.
         """
-        print(self.heading(), self.__theta)
         self.goto(self.xcor() + amount * cos(self.__theta), self.ycor() + amount * sin(self.__theta))
     fd = forward
 
