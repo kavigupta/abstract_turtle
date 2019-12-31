@@ -55,7 +55,7 @@ class Canvas(ABC):
         pass
 
     @abstractmethod
-    def clear(self, color):
+    def clear(self):
         """
         Clear everything in the foreground
         """
@@ -227,7 +227,7 @@ class Turtle(BaseTurtle):
         """
         Move forward the given amount.
         """
-        self.goto(self.xcor() + amount * cos(self.heading()), self.xcor() + amount * sin(self.heading()))
+        self.goto(self.xcor() + amount * cos(pi / 180 * self.heading()), self.xcor() + amount * sin(pi / 180 * self.heading()))
     fd = forward
 
     def backward(self, amount):
