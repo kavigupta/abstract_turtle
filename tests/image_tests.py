@@ -119,3 +119,38 @@ class BasicSquareTest(unittest.TestCase):
             t.pd()
             t.rt(45)
         self.assertImageEquals("img/multi_directions.png")
+
+    def test_setvarious_things(self):
+        t = self.turtle
+        t.setx(100)
+        t.sety(100)
+        self.assertEqual((100, 100), t.pos())
+        t.setx(0)
+        t.sety(0)
+        t.setheading(45)
+        t.fd(100)
+        self.assertImageEquals("img/set_various_things.png")
+
+    def test_degrees(self):
+        t = self.turtle
+        t.rt(45)
+        self.assertEqual(45, t.heading())
+        t.degrees(400)
+        self.assertEqual(50, t.heading())
+
+    def test_home(self):
+        t = self.turtle
+        t.rt(45)
+        t.fd(100)
+        t.home()
+        self.assertEqual(0, t.heading())
+        self.assertEqual((0, 0), t.pos())
+
+    def test_distance(self):
+        t1 = self.turtle
+        t1.setpos(3, 8)
+        t2 = Turtle(PillowCanvas(1000, 1000))
+        t2.setpos(6, 12)
+
+        self.assertEqual(t1.distance(t2), 5)
+        self.assertEqual(t1.distance((0, 5)), 3 * 2**0.5)

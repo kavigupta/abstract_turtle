@@ -160,10 +160,10 @@ class BaseTurtle:
         return Position(self.__x, self.__y)
 
     def __to_real_angle(self, amount):
-        return (90 - amount) * (2 * pi) / self.__degrees
+        return (1 / 4 - amount / self.__degrees) * (2 * pi)
 
     def __from_real_angle(self, angle):
-        return 90 - angle * self.__degrees / (2 * pi)
+        return (1/4 - angle / (2 * pi)) * self.__degrees
 
     @staticmethod
     def __convert_color(*color):
@@ -206,7 +206,7 @@ class Turtle(BaseTurtle):
         """
         Move so that the y coordinate is Y
         """
-        self.goto(self.ycor(), y)
+        self.goto(self.xcor(), y)
 
     def home(self):
         """
