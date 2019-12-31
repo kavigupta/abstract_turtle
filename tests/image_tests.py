@@ -77,3 +77,16 @@ class BasicSquareTest(unittest.TestCase):
             t.rt(72)
         t.end_fill()
         self.assertImageEquals("img/full_star.png")
+
+    def test_circle(self):
+        t = self.turtle
+        t.circle(100)
+        t.fd(100)
+        self.assertImageEquals("img/basic_circle.png")
+
+    def test_thick_circle(self):
+        t = self.turtle
+        t.width(10)
+        t.circle(100)
+        t.fd(100)
+        self.assertImageEquals("img/thick_circle.png")
