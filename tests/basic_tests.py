@@ -1,6 +1,6 @@
 
 import unittest
-from abstract_turtle.abstract_turtle import Turtle, Position, Color
+from abstract_turtle.turtle import Turtle, Position, Color
 from abstract_turtle.logging_canvas import LoggingCanvas
 
 class BasicSquareTest(unittest.TestCase):
