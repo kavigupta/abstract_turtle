@@ -1,5 +1,8 @@
 
 import unittest
+
+from collections import Counter
+
 from abstract_turtle.turtle import Turtle
 from abstract_turtle.logging_canvas import LoggingCanvas
 
@@ -26,4 +29,7 @@ class BasicSquareTest(unittest.TestCase):
         t.rt(90)
         self.assertPositionAlmostEqual(t, (0, 0))
 
-        self.assertEqual(4, len(canvas.log))
+        self.assertEqual(
+            {'draw_rectangular_line' : 4, 'draw_circle' : 8},
+            Counter([func for func, *_ in canvas.log])
+        )
