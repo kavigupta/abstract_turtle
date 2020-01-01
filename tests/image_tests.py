@@ -31,7 +31,7 @@ class BasicSquareTest(unittest.TestCase):
                 t.fd(100)
                 t.rt(90)
             t.rt(10)
-        self.assertImageEquals("img/squareflower.png")
+        self.assertImageEquals("test_img/squareflower.png")
 
     def test_centeredness(self):
         t = self.turtle
@@ -45,14 +45,14 @@ class BasicSquareTest(unittest.TestCase):
         t.setpos(0, 0)
         t.rt(45)
         t.fd(100)
-        self.assertImageEquals("img/centeredness.png")
+        self.assertImageEquals("test_img/centeredness.png")
 
     def test_multisegment_forward(self):
         t = self.turtle
         t.width(20)
         for _ in range(3):
             t.fd(100)
-        self.assertImageEquals("img/multiseg_forward.png")
+        self.assertImageEquals("test_img/multiseg_forward.png")
 
     def test_empty_star(self):
         t = self.turtle
@@ -62,7 +62,7 @@ class BasicSquareTest(unittest.TestCase):
             t.lt(180 - 36)
             t.fd(100)
             t.rt(72)
-        self.assertImageEquals("img/empty_star.png")
+        self.assertImageEquals("test_img/empty_star.png")
 
     def test_full_star(self):
         t = self.turtle
@@ -76,20 +76,20 @@ class BasicSquareTest(unittest.TestCase):
             t.fd(100)
             t.rt(72)
         t.end_fill()
-        self.assertImageEquals("img/full_star.png")
+        self.assertImageEquals("test_img/full_star.png")
 
     def test_circle(self):
         t = self.turtle
         t.circle(100)
         t.fd(100)
-        self.assertImageEquals("img/basic_circle.png")
+        self.assertImageEquals("test_img/basic_circle.png")
 
     def test_thick_circle(self):
         t = self.turtle
         t.width(10)
         t.circle(100)
         t.fd(100)
-        self.assertImageEquals("img/thick_circle.png")
+        self.assertImageEquals("test_img/thick_circle.png")
 
     def test_background(self):
         t = self.turtle
@@ -98,7 +98,7 @@ class BasicSquareTest(unittest.TestCase):
         t.bgcolor(255, 255, 0)
         t.rt(90)
         t.fd(100)
-        self.assertImageEquals("img/background_test.png")
+        self.assertImageEquals("test_img/background_test.png")
 
     def test_multicolor(self):
         t = self.turtle
@@ -108,7 +108,7 @@ class BasicSquareTest(unittest.TestCase):
         t.fd(100)
         t.pencolor(0, 255, 0)
         t.fd(100)
-        self.assertImageEquals("img/multicolor.png")
+        self.assertImageEquals("test_img/multicolor.png")
 
     def test_multi_directions(self):
         t = self.turtle
@@ -118,7 +118,7 @@ class BasicSquareTest(unittest.TestCase):
             t.fd(10)
             t.pd()
             t.rt(45)
-        self.assertImageEquals("img/multi_directions.png")
+        self.assertImageEquals("test_img/multi_directions.png")
 
     def test_setvarious_things(self):
         t = self.turtle
@@ -129,7 +129,7 @@ class BasicSquareTest(unittest.TestCase):
         t.sety(0)
         t.setheading(45)
         t.fd(100)
-        self.assertImageEquals("img/set_various_things.png")
+        self.assertImageEquals("test_img/set_various_things.png")
 
     def test_dot(self):
         t = self.turtle
@@ -143,14 +143,14 @@ class BasicSquareTest(unittest.TestCase):
         t.fd(50)
         t.pencolor(0, 255, 0)
         t.fd(50)
-        self.assertImageEquals("img/dot.png")
+        self.assertImageEquals("test_img/dot.png")
 
     def test_backward(self):
         t = self.turtle
         t.fd(100)
         t.rt(45)
         t.bk(100)
-        self.assertImageEquals("img/bk.png")
+        self.assertImageEquals("test_img/bk.png")
 
     def test_clear(self):
         t = self.turtle
@@ -160,7 +160,7 @@ class BasicSquareTest(unittest.TestCase):
         t.clear()
         t.rt(90)
         t.fd(100)
-        self.assertImageEquals("img/clear.png")
+        self.assertImageEquals("test_img/clear.png")
 
     def test_reset(self):
         t = self.turtle
@@ -170,7 +170,7 @@ class BasicSquareTest(unittest.TestCase):
         t.reset()
         t.rt(90)
         t.fd(100)
-        self.assertImageEquals("img/reset.png")
+        self.assertImageEquals("test_img/reset.png")
 
     def test_color(self):
         t = self.turtle
@@ -181,4 +181,4 @@ class BasicSquareTest(unittest.TestCase):
                 t.rt(90)
             t.fd(100)
             t.color(255, 0, 0)
-        self.assertImageEquals("img/test_color.png")
+        self.assertImageEquals("test_img/test_color.png")
