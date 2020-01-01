@@ -2,7 +2,7 @@
 import unittest
 
 import numpy as np
-import matplotlib.pyplot as plt
+from PIL import Image
 
 from abstract_turtle.turtle import Turtle
 from abstract_turtle.pillow_canvas import PillowCanvas
@@ -17,11 +17,11 @@ class BasicSquareTest(unittest.TestCase):
         self.turtle = Turtle(self.canvas)
 
     def assertImageEquals(self, path):
-        data = self.canvas.export().astype(np.float32) / 255
+        data = self.canvas.export()
         if REFRESH_IMAGES:
-            plt.imsave(path, data)
+            data.save(path, "png")
         else:
-            saved_data = plt.imread(path)
+            saved_data = np.array(Image.open(path).convert("RGBA"))
             self.assertTrue(np.array_equal(data, saved_data))
 
     def test_square(self):

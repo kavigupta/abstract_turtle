@@ -55,7 +55,7 @@ class PillowCanvas(Canvas):
         assert len(data.shape) == 3 and data.shape[-1] == 4
         transparents = data[:,:,-1] == 0
         data[transparents] = self.tr_color(self.background_color)
-        return data
+        return Image.fromarray(data)
 
 def circle(draw, cx, cy, r, fill, width=1, segments=100):
     # based on https://gist.github.com/skion/9259926
