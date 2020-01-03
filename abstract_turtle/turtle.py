@@ -80,7 +80,7 @@ class BaseTurtle:
         """
         return self.__from_real_angle(self.__theta)
 
-    def degrees(self, amount):
+    def degrees(self, amount=360):
         """
         Set the number of degrees in a circle
         """
