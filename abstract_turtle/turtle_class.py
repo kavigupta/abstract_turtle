@@ -1,6 +1,6 @@
 from math import pi, sin, cos
 
-from .model import Color, Position
+from .model import Color, Position, DrawnTurtle
 from .canvas import Canvas
 
 def turtle_method(func):
@@ -25,6 +25,11 @@ class BaseTurtle:
         self.__pen_down = True
         self.__degrees = 360
         self.__polygon = None
+        self.__turtle_is_shown = True
+        self.__turtle_stretch_wid = 1
+        self.__turtle_stretch_len = 1
+
+        self.__update_turtle()
 
     @turtle_method
     def goto(self, x, y):
@@ -37,6 +42,7 @@ class BaseTurtle:
         self.__y = y
         if self.filling():
             self.__polygon.append(self.__current_pos)
+        self.__update_turtle()
     setpos = setposition = goto
 
     @turtle_method
@@ -53,6 +59,7 @@ class BaseTurtle:
         Set the heading to the given value in degrees
         """
         self.__theta = self.__to_real_angle(heading)
+        self.__update_turtle()
     seth = setheading
 
     @turtle_method
@@ -181,6 +188,46 @@ class BaseTurtle:
     @turtle_method
     def bgcolor(self, *color):
         self.__canvas.set_bgcolor(self.__convert_color(*color))
+
+    def __update_turtle(self):
+        if self.__turtle_is_shown:
+            self.__canvas.update_turtle(
+                DrawnTurtle(self.__current_pos, self.__theta, self.__turtle_stretch_wid, self.__turtle_stretch_len)
+            )
+        else:
+            self.__canvas.update_turtle(None)
+
+    @turtle_method
+    def hideturtle(self):
+        """
+        Hide the turtle from the canvas.
+        """
+        self.__turtle_is_shown = False
+        self.__update_turtle()
+    ht = hideturtle
+
+    @turtle_method
+    def showturtle(self):
+        """
+        Show the turtle on the canvas
+        """
+        self.__turtle_is_shown = True
+        self.__update_turtle()
+    st = showturtle
+
+    @turtle_method
+    def isvisible(self):
+        """
+        Return whether the turtle is visible
+        """
+        return self.__turtle_is_shown
+
+    @turtle_method
+    def shapesize(self, stretch_wid=None, stretch_len=None):
+        self.__turtle_stretch_wid = stretch_wid
+        self.__turtle_stretch_len = stretch_len
+        self.__update_turtle()
+    turtlesize = shapesize
 
     @property
     def __current_pos(self):

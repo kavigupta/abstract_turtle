@@ -49,3 +49,10 @@ class Canvas(ABC):
         Clear everything in the foreground
         """
         pass
+
+    @abstractmethod
+    def update_turtle(self, drawn_turtle):
+        """
+        Update the turtle to the given DrawnTurtle object, or remove the turtle if None is passed
+        """
+        pass

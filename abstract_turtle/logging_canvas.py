@@ -23,6 +23,15 @@ class AbstractLoggingCanvas(Canvas):
     def clear(self):
         self.on_action(['clear'])
 
+    def update_turtle(self, drawn_turtle):
+        self.on_action([
+            'update_turtle',
+            [drawn_turtle.pos.x, drawn_turtle.pos.y],
+            drawn_turtle.heading,
+            drawn_turtle.stretch_wid,
+            drawn_turtle.stretch_len
+        ])
+
 class LoggingCanvas(AbstractLoggingCanvas):
     def __init__(self, width, height):
         super().__init__(width, height)

@@ -15,7 +15,9 @@ class BasicSquareTest(unittest.TestCase):
         self.canvas = PillowCanvas(1000, 1000)
         self.turtle = Turtle(self.canvas)
 
-    def assertImageEquals(self, path):
+    def assertImageEquals(self, path, hide_turtle=True):
+        if hide_turtle:
+            self.turtle.hideturtle()
         data = self.canvas.export()
         if REFRESH_IMAGES:
             data.save(path, "png")
@@ -181,3 +183,20 @@ class BasicSquareTest(unittest.TestCase):
             t.fd(100)
             t.color(255, 0, 0)
         self.assertImageEquals("test_img/test_color.png")
+
+    def test_turtle_drawn_correctly_at_start(self):
+        self.assertImageEquals("test_img/just_turtle.png", hide_turtle=False)
+
+    def test_turtle_at_pos(self):
+        t = self.turtle
+        t.fd(10)
+        t.rt(45)
+        t.fd(20)
+        self.assertImageEquals("test_img/turtle_at_pos.png", hide_turtle=False)
+
+    def test_turtle_full_rotate(self):
+        t = self.turtle
+        t.fd(10)
+        t.rt(45 + 360)
+        t.fd(20)
+        self.assertImageEquals("test_img/turtle_full_rotate.png", hide_turtle=False)

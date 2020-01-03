@@ -34,7 +34,7 @@ class BasicSquareTest(unittest.TestCase):
         self.assertPositionAlmostEqual(t, (0, 0))
 
         self.assertEqual(
-            {'draw_rectangular_line' : 4},
+            {'draw_rectangular_line' : 4, 'update_turtle' : 9},
             Counter([func for func, *_ in self.canvas.log])
         )
     def test_degrees(self):

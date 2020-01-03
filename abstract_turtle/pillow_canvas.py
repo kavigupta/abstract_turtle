@@ -16,6 +16,7 @@ class PillowCanvas(Canvas):
         self.image = Image.new('RGBA', (width, height))
         self.background_color = Color(255, 255, 255)
         self.draw = ImageDraw.Draw(self.image)
+        self.turtle = None
 
     def tr_pos(self, pos):
         x, y = pos.x, pos.y
@@ -51,11 +52,20 @@ class PillowCanvas(Canvas):
         self.draw.rectangle((0, 0, self.width, self.height), fill=(0, 0, 0, 0))
 
     def export(self):
-        data = np.array(self.image)
+        image = self.image.copy()
+        if self.turtle is not None:
+            ImageDraw.Draw(image).polygon(
+                [self.tr_pos(point) for point in self.turtle.points],
+                fill=self.tr_color(Color.of(0, 0, 0))
+            )
+        data = np.array(image)
         assert len(data.shape) == 3 and data.shape[-1] == 4
         transparents = data[:,:,-1] == 0
         data[transparents] = self.tr_color(self.background_color)
         return Image.fromarray(data)
+
+    def update_turtle(self, turtle):
+        self.turtle = turtle
 
 def circle(draw, cx, cy, r, fill, width=1, segments=100):
     # based on https://gist.github.com/skion/9259926

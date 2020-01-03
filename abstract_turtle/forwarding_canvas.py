@@ -24,3 +24,4 @@ class ForwardingCanvas(Canvas):
     fill_polygon = _forward("fill_polygon")
     set_bgcolor = _forward("set_bgcolor")
     clear = _forward("clear")
+    update_turtle = _forward("update_turtle")
