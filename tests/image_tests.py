@@ -4,8 +4,7 @@ import unittest
 import numpy as np
 from PIL import Image
 
-from abstract_turtle.turtle import Turtle
-from abstract_turtle.pillow_canvas import PillowCanvas
+from abstract_turtle import Turtle, PillowCanvas
 
 # set this to true to create the images
 REFRESH_IMAGES = False

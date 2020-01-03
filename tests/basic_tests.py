@@ -5,8 +5,7 @@ from math import pi
 
 from collections import Counter
 
-from abstract_turtle.turtle import Turtle
-from abstract_turtle.logging_canvas import LoggingCanvas
+from abstract_turtle import Turtle, LoggingCanvas
 
 class BasicSquareTest(unittest.TestCase):
 
