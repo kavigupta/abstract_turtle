@@ -3,6 +3,13 @@ from math import pi, sin, cos
 from .model import Color, Position
 from .canvas import Canvas
 
+def turtle_method(func):
+    """
+    Marks the given method as one that needs to be placed in global.
+    """
+    func.is_turtle_method = True
+    return func
+
 class BaseTurtle:
     """
     Manages all the basic turtle functionality. The other turtle methods can be expressed in terms of these.
@@ -19,6 +26,7 @@ class BaseTurtle:
         self.__degrees = 360
         self.__polygon = None
 
+    @turtle_method
     def goto(self, x, y):
         """
         Go to the given position (X, Y).
@@ -31,6 +39,7 @@ class BaseTurtle:
             self.__polygon.append(self.__current_pos)
     setpos = setposition = goto
 
+    @turtle_method
     def forward(self, amount):
         """
         Move forward the given amount.
@@ -38,6 +47,7 @@ class BaseTurtle:
         self.goto(self.xcor() + amount * cos(self.__theta), self.ycor() + amount * sin(self.__theta))
     fd = forward
 
+    @turtle_method
     def setheading(self, heading):
         """
         Set the heading to the given value in degrees
@@ -45,6 +55,7 @@ class BaseTurtle:
         self.__theta = self.__to_real_angle(heading)
     seth = setheading
 
+    @turtle_method
     def circle(self, radius):
         """
         Draw a circle at the given point with the given RADIUS
@@ -52,6 +63,7 @@ class BaseTurtle:
         if self.__pen_down:
             self.__canvas.draw_circle(self.__current_pos, radius, self.__pen_color, self.__line_width, False)
 
+    @turtle_method
     def dot(self, size=None):
         """
         Draw a dot at the current location. If size is not specified, set it to
@@ -62,30 +74,35 @@ class BaseTurtle:
         if self.__pen_down:
             self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True)
 
+    @turtle_method
     def xcor(self):
         """
         Get the current x coordinate
         """
         return self.__x
 
+    @turtle_method
     def ycor(self):
         """
         Get the current y coordinate
         """
         return self.__y
 
+    @turtle_method
     def heading(self):
         """
         Get the current heading
         """
         return self.__from_real_angle(self.__theta)
 
+    @turtle_method
     def degrees(self, amount=360):
         """
         Set the number of degrees in a circle
         """
         self.__degrees = amount
 
+    @turtle_method
     def pendown(self):
         """
         Do draw when moving
@@ -93,6 +110,7 @@ class BaseTurtle:
         self.__pen_down = True
     pd = down = pendown
 
+    @turtle_method
     def penup(self):
         """
         Do not draw when moving
@@ -100,6 +118,7 @@ class BaseTurtle:
         self.__pen_down = False
     pu = up = penup
 
+    @turtle_method
     def pensize(self, width=None):
         """
         Set or get the pen size. If WIDTH is None, get it, otherwise set it.
@@ -109,36 +128,42 @@ class BaseTurtle:
         self.__line_width = width
     width = pensize
 
+    @turtle_method
     def isdown(self):
         """
         Return if the pen is down or not
         """
         return self.__pen_down
 
+    @turtle_method
     def pencolor(self, *color):
         """
         Set the pen color as COLOR
         """
         self.__pen_color = self.__convert_color(*color)
 
+    @turtle_method
     def fillcolor(self, *color):
         """
         Set the fill color as COLOR
         """
         self.__fill_color = self.__convert_color(*color)
 
+    @turtle_method
     def filling(self):
         """
         Return whether the canvas is filling.
         """
         return self.__polygon is not None
 
+    @turtle_method
     def begin_fill(self):
         """
         Begin setting the polygon to fill
         """
         self.__polygon = [self.__current_pos]
 
+    @turtle_method
     def end_fill(self):
         """
         End setting the polygon to fill, and fill it in.
@@ -146,12 +171,14 @@ class BaseTurtle:
         self.__canvas.fill_polygon(self.__polygon, self.__fill_color)
         self.__polygon = None
 
+    @turtle_method
     def clear(self):
         """
         Clear the canvas, but do not move the turtle.
         """
         self.__canvas.clear()
 
+    @turtle_method
     def bgcolor(self, *color):
         self.__canvas.set_bgcolor(self.__convert_color(*color))
 
@@ -175,6 +202,7 @@ class Turtle(BaseTurtle):
     This entire class should only use public methods of the BaseTurtle class.
     """
 
+    @turtle_method
     def backward(self, amount):
         """
         Move backward the given amount.
@@ -182,6 +210,7 @@ class Turtle(BaseTurtle):
         self.forward(-amount)
     bk = back = backward
 
+    @turtle_method
     def right(self, amount):
         """
         Rotate right the given amount.
@@ -189,6 +218,7 @@ class Turtle(BaseTurtle):
         self.setheading(self.heading() + amount)
     rt = right
 
+    @turtle_method
     def left(self, amount):
         """
         Rotate left the given amount.
@@ -196,18 +226,21 @@ class Turtle(BaseTurtle):
         self.right(-amount)
     lt = left
 
+    @turtle_method
     def setx(self, x):
         """
         Move so that the x coordinate is X
         """
         self.goto(x, self.xcor())
 
+    @turtle_method
     def sety(self, y):
         """
         Move so that the y coordinate is Y
         """
         self.goto(self.xcor(), y)
 
+    @turtle_method
     def home(self):
         """
         Set location to (0, 0) and set heading to 0
@@ -215,6 +248,7 @@ class Turtle(BaseTurtle):
         self.goto(0, 0)
         self.setheading(0)
 
+    @turtle_method
     def position(self):
         """
         Get the current position as a tuple
@@ -222,6 +256,7 @@ class Turtle(BaseTurtle):
         return self.xcor(), self.ycor()
     pos = position
 
+    @turtle_method
     def distance(self, other):
         """
         Get the distance between this and the other location/turtle.
@@ -231,12 +266,14 @@ class Turtle(BaseTurtle):
         x, y = other
         return ((x - self.xcor()) ** 2 + (y - self.ycor()) ** 2) ** 0.5
 
+    @turtle_method
     def radians(self):
         """
         Set angle units to radians
         """
         return self.degrees(2 * pi)
 
+    @turtle_method
     def color(self, *color):
         """
         Set both the pen and fill colors
@@ -244,6 +281,7 @@ class Turtle(BaseTurtle):
         self.pencolor(*color)
         self.fillcolor(*color)
 
+    @turtle_method
     def reset(self):
         self.home()
         self.clear()
