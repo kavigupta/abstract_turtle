@@ -1,5 +1,4 @@
-# Main Module
-attrs==19.3.0
+# Main Module (none for now)
 
 # Pillow Extension
 numpy==1.18.0
