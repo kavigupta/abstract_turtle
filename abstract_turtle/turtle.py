@@ -6,7 +6,8 @@ from .turtle_class import Turtle
 __canvas = ForwardingCanvas(LoggingCanvas(1000, 1000))
 __turtle = Turtle(__canvas)
 
-for method_name, method in __turtle.__dict__:
+for method_name in dir(__turtle):
+    method = getattr(__turtle, method_name)
     if getattr(method, "is_turtle_method", False):
         globals()[method_name] = method
 
