@@ -4,6 +4,11 @@ from abc import abstractmethod
 from .canvas import Canvas
 
 class AbstractLoggingCanvas(Canvas):
+
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        self.drawn_turtle = None
+
     @abstractmethod
     def on_action(self, log_line):
         pass
@@ -26,11 +31,16 @@ class AbstractLoggingCanvas(Canvas):
     def update_turtle(self, drawn_turtle):
         self.on_action([
             'update_turtle',
-            [drawn_turtle.pos.x, drawn_turtle.pos.y],
+            [drawn_turtle.pos.x, drawn_turtle.pos.y] if drawn_turtle is not None else None,
             drawn_turtle.heading,
             drawn_turtle.stretch_wid,
             drawn_turtle.stretch_len
         ])
+        self.drawn_turtle = drawn_turtle
+
+    def last_turtle(self):
+        self.on_action(['last_turtle'])
+        return self.drawn_turtle
 
 class LoggingCanvas(AbstractLoggingCanvas):
     def __init__(self, width, height):

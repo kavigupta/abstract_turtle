@@ -17,6 +17,7 @@ class ForwardingCanvas(Canvas):
         self._canvas = canvas
 
     def set_canvas(self, canvas):
+        canvas.update_turtle(self._canvas.last_turtle())
         self._canvas = canvas
 
     draw_rectangular_line = _forward("draw_rectangular_line")
@@ -25,3 +26,4 @@ class ForwardingCanvas(Canvas):
     set_bgcolor = _forward("set_bgcolor")
     clear = _forward("clear")
     update_turtle = _forward("update_turtle")
+    last_turtle = _forward("last_turtle")

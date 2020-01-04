@@ -67,6 +67,9 @@ class PillowCanvas(Canvas):
     def update_turtle(self, turtle):
         self.turtle = turtle
 
+    def last_turtle(self, turtle):
+        return self.turtle
+
 def circle(draw, cx, cy, r, fill, width=1, segments=100):
     # based on https://gist.github.com/skion/9259926
     da = 2 * pi / segments

@@ -56,3 +56,10 @@ class Canvas(ABC):
         Update the turtle to the given DrawnTurtle object, or remove the turtle if None is passed
         """
         pass
+
+    @abstractmethod
+    def last_turtle(self):
+        """
+        Get the last DrawnTurtle object provided to this canvas.
+        """
+        pass
