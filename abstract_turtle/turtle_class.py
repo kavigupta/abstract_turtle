@@ -191,11 +191,9 @@ class BaseTurtle:
 
     def __update_turtle(self):
         if self.__turtle_is_shown:
-            self.__canvas.update_turtle(
-                DrawnTurtle(self.__current_pos, self.__theta, self.__turtle_stretch_wid, self.__turtle_stretch_len)
-            )
+            self.__canvas.turtle = DrawnTurtle(self.__current_pos, self.__theta, self.__turtle_stretch_wid, self.__turtle_stretch_len)
         else:
-            self.__canvas.update_turtle(None)
+            self.__canvas.turtle = None
 
     @turtle_method
     def hideturtle(self):

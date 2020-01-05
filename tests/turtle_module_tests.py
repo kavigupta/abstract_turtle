@@ -17,6 +17,6 @@ class TestTurtleModule(unittest.TestCase):
         self.assertAlmostEqual(100, ycor())
         self.assertAlmostEqual(90, heading())
         self.assertEqual(
-            {'draw_rectangular_line' : 1, 'update_turtle' : 3},
+            {'draw_rectangular_line' : 1, 'refreshed_turtle' : 3},
             Counter([func for func, *_ in canvas.log])
         )

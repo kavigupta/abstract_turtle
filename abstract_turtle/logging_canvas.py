@@ -28,19 +28,12 @@ class AbstractLoggingCanvas(Canvas):
     def clear(self):
         self.on_action(['clear'])
 
-    def update_turtle(self, drawn_turtle):
+    def refreshed_turtle(self, drawn_turtle):
         self.on_action([
-            'update_turtle',
-            [drawn_turtle.pos.x, drawn_turtle.pos.y] if drawn_turtle is not None else None,
-            drawn_turtle.heading,
-            drawn_turtle.stretch_wid,
-            drawn_turtle.stretch_len
+            'refreshed_turtle',
+            drawn_turtle.json_friendly if drawn_turtle is not None else None
         ])
         self.drawn_turtle = drawn_turtle
-
-    def last_turtle(self):
-        self.on_action(['last_turtle'])
-        return self.drawn_turtle
 
 class LoggingCanvas(AbstractLoggingCanvas):
     def __init__(self, width, height):

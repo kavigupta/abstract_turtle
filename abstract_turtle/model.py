@@ -34,5 +34,14 @@ class DrawnTurtle(namedtuple('DrawnTurtle', ['pos', 'heading', 'stretch_wid', 's
         ]
         return moved_points
 
+    @property
+    def json_friendly(self):
+        return [
+            [self.pos.x, self.pos.y],
+            self.heading,
+            self.stretch_wid,
+            self.stretch_len
+        ]
+
 def rotate(x, y, theta):
     return x * cos(theta) - y * sin(theta), x * sin(theta) + y * cos(theta)
