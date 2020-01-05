@@ -1,21 +1,20 @@
 
-import unittest
-
 from math import pi
 
 from collections import Counter
 
 from abstract_turtle import Turtle, LoggingCanvas
 
-class BasicSquareTest(unittest.TestCase):
+from .utils import TestCase2
+
+class BasicSquareTest(TestCase2):
 
     def setUp(self):
         self.canvas = LoggingCanvas(1000, 1000)
         self.turtle = Turtle(self.canvas)
 
     def assertPositionAlmostEqual(self, t, pos):
-        self.assertAlmostEqual(t.xcor(), pos[0])
-        self.assertAlmostEqual(t.ycor(), pos[1])
+        self.assertContainersAlmostEqual(t.pos(), pos)
 
     def test_square(self):
         t = self.turtle
