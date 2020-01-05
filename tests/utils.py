@@ -41,4 +41,4 @@ class TestCase2(unittest.TestCase):
         """
         first = fuzzify(canonicalizer(first), places)
         second = fuzzify(canonicalizer(second), places)
-        self.assertEqual(first, second)
+        self.assertEqual(first, second, **kwargs)
