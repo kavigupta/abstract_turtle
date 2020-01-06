@@ -2,3 +2,5 @@ __pycache__
 .coverage
 .cover
 env
+dist
+*.egg-info
