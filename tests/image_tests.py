@@ -200,3 +200,13 @@ class BasicSquareTest(unittest.TestCase):
         t.rt(45 + 360)
         t.fd(20)
         self.assertImageEquals("test_img/turtle_full_rotate.png", hide_turtle=False)
+
+    def test_color_strings(self):
+        t = self.turtle
+        t.pencolor("#12fa0b")
+        t.fd(100)
+        t.pencolor("red")
+        t.fd(100)
+        t.pencolor("#1fb")
+        t.fd(100)
+        self.assertImageEquals("test_img/color_strings.png")
