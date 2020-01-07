@@ -28,6 +28,7 @@ class BaseTurtle:
         self.__turtle_is_shown = True
         self.__turtle_stretch_wid = 1
         self.__turtle_stretch_len = 1
+        self.__pixel_size = 1
 
         self.__update_turtle()
 
@@ -80,6 +81,18 @@ class BaseTurtle:
             size = max(self.__line_width + 4, self.__line_width * 2)
         if self.__pen_down:
             self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True)
+
+    @turtle_method
+    def pixel(self, x, y, color):
+        """
+        Fill in a square of size pixel_size at (x * pixel_size, y * pixel_size) with the given color.
+        """
+        d = [0, self.__pixel_size]
+        self.__canvas.fill_polygon([[x + dx, y + dy] for dx in d for dy in d], color)
+
+    @turtle_method
+    def pixel_size(self, pixel_size):
+        self.__pixel_size = pixel_size
 
     @turtle_method
     def xcor(self):
