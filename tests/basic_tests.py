@@ -73,3 +73,43 @@ class BasicSquareTest(TestCase2):
 
         self.assertAlmostEqual(t1.distance(t2), 5)
         self.assertAlmostEqual(t1.distance((0, 5)), 3 * 2**0.5)
+
+    def test_bad_color_string(self):
+        t1 = self.turtle
+        try:
+            t1.bgcolor('reds')
+            self.fail()
+        except RuntimeError as e:
+            self.assertEqual(str(e), "Invalid color string: 'reds'")
+
+    def test_bad_hex_color(self):
+        t1 = self.turtle
+        try:
+            t1.bgcolor('#hello')
+            self.fail()
+        except RuntimeError as e:
+            self.assertEqual(str(e), "Invalid hex color string: 'hello'")
+
+    def test_bad_hex_color_parsing(self):
+        t1 = self.turtle
+        try:
+            t1.bgcolor('#bcdefg')
+            self.fail()
+        except RuntimeError as e:
+            self.assertEqual(str(e), "Invalid hex color string: 'bcdefg'")
+
+    def test_bad_integer_color(self):
+        t1 = self.turtle
+        try:
+            t1.bgcolor(0, 280, 30)
+            self.fail()
+        except RuntimeError as e:
+            self.assertEqual(str(e), "Invalid integer color: (0, 280, 30)")
+
+    def test_bad_types(self):
+        t1 = self.turtle
+        try:
+            t1.bgcolor(0, 40.0, 30)
+            self.fail()
+        except RuntimeError as e:
+            self.assertEqual(str(e), "Invalid color. Expected either 3 ints or 1 string, but got: int, float, int")
