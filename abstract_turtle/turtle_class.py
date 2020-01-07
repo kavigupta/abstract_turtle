@@ -63,12 +63,14 @@ class BaseTurtle:
     seth = setheading
 
     @turtle_method
-    def circle(self, radius):
+    def circle(self, radius, extent=2*pi):
         """
-        Draw a circle at the given point with the given RADIUS
+        Draw a circle at the given point with the given RADIUS and EXTENT. If EXTENT exists, draw only the
+        first EXTENT degrees of the circle. If RADIUS is positive, draw in the counterclockwise direction.
+        Otherwise, draw in the clockwise direction.
         """
         if self.__pen_down:
-            self.__canvas.draw_circle(self.__current_pos, radius, self.__pen_color, self.__line_width, False)
+            self.__canvas.draw_circle(self.__current_pos, radius, self.__pen_color, self.__line_width, False, extent)
 
     @turtle_method
     def dot(self, size=None):

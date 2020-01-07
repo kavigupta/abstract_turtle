@@ -32,7 +32,8 @@ class PillowCanvas(Canvas):
     def draw_rectangular_line(self, start, end, color, width):
         self.draw.line([self.tr_pos(start), self.tr_pos(end)], self.tr_color(color), width)
 
-    def draw_circle(self, center, radius, color, width, is_filled):
+    def draw_circle(self, center, radius, color, width, is_filled, extent=2 * pi):
+        # FIXME: DOES NOT SUPPORT EXTENT PROPERLY YET
         x, y = self.tr_pos(center)
         left_up = (x-radius, y-radius)
         right_down = (x+radius, y+radius)

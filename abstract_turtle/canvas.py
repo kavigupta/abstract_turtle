@@ -1,5 +1,7 @@
 
 from abc import ABC, abstractmethod
+from math import pi
+
 
 class Canvas(ABC):
     def __init__(self, width, height):
@@ -31,9 +33,11 @@ class Canvas(ABC):
             self.draw_circle(end, width / 2, color, width, True)
 
     @abstractmethod
-    def draw_circle(self, center, radius, color, width, is_filled):
+    def draw_circle(self, center, radius, color, width, is_filled, extent=2 * pi):
         """
         Draw a circle of width 1 with the given center CENTER, radius RADIUS, and color COLOR
+        If EXTENT exists, draw only the first EXTENT degrees of the circle. If RADIUS is positive,
+        draw in the counterclockwise direction. Otherwise, draw in the clockwise direction.
 
         Fill the circle if IS_FILLED is true.
         """
