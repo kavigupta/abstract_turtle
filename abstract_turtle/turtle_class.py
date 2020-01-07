@@ -83,12 +83,15 @@ class BaseTurtle:
             self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True)
 
     @turtle_method
-    def pixel(self, x, y, color):
+    def pixel(self, x, y, *color):
         """
         Fill in a square of size pixel_size at (x * pixel_size, y * pixel_size) with the given color.
         """
-        d = [0, self.__pixel_size]
-        self.__canvas.fill_polygon([[x + dx, y + dy] for dx in d for dy in d], color)
+        d = self.__pixel_size
+        self.__canvas.fill_polygon(
+            [Position(x * d, y * d), Position((x + 1) * d, y * d), Position((x + 1) * d, (y + 1) * d), Position(x * d, (y + 1) * d)],
+            self.__convert_color(*color)
+        )
 
     @turtle_method
     def pixel_size(self, pixel_size):

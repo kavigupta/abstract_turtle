@@ -7,7 +7,7 @@ from PIL import Image
 from abstract_turtle import Turtle, PillowCanvas
 
 # set this to true to create the images
-REFRESH_IMAGES = False
+REFRESH_IMAGES = True
 
 class BasicSquareTest(unittest.TestCase):
 
@@ -210,3 +210,11 @@ class BasicSquareTest(unittest.TestCase):
         t.pencolor("#1fb")
         t.fd(100)
         self.assertImageEquals("test_img/color_strings.png")
+
+    def test_pixel(self):
+        t = self.turtle
+        t.pixel_size(100)
+        t.pixel(0, 0, "red")
+        t.pixel_size(50)
+        t.pixel(1.5, 0.5, "green")
+        self.assertImageEquals("test_img/test_pixel.png")
