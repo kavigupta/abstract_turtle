@@ -89,7 +89,7 @@ class BaseTurtle:
         """
         d = self.__pixel_size
         self.__canvas.fill_polygon(
-            [Position(x * d, y * d), Position((x + 1) * d, y * d), Position((x + 1) * d, (y + 1) * d), Position(x * d, (y + 1) * d)],
+            [Position((x + i) * d, (y + j) * d) for i, j in [[0, 0], [1, 0], [1, 1], [0, 1]]],
             self.__convert_color(*color)
         )
 
