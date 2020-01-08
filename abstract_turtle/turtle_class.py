@@ -208,7 +208,7 @@ class BaseTurtle:
 
     def __update_turtle(self):
         if self.__turtle_is_shown:
-            self.__canvas.turtle = DrawnTurtle(self.__current_pos, self.__theta, self.__turtle_stretch_wid, self.__turtle_stretch_len)
+            self.__canvas.turtle = DrawnTurtle(self.__current_pos, self.__theta % (2 * pi), self.__turtle_stretch_wid, self.__turtle_stretch_len)
         else:
             self.__canvas.turtle = None
 
