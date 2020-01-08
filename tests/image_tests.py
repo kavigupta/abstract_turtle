@@ -11,8 +11,8 @@ REFRESH_IMAGES = False
 
 class BasicSquareTest(unittest.TestCase):
 
-    def setUp(self):
-        self.canvas = PillowCanvas(1000, 1000)
+    def setUp(self, width=1000, height=1000):
+        self.canvas = PillowCanvas(width, height)
         self.turtle = Turtle(self.canvas)
 
     def assertImageEquals(self, path, hide_turtle=True):
@@ -224,3 +224,25 @@ class BasicSquareTest(unittest.TestCase):
         t.circle(-50, -90)
         t.fd(100)
         self.assertImageEquals("test_img/partial_circle.png")
+
+    def test_pixel(self):
+        t = self.turtle
+        t.pixel_size(100)
+        t.pixel(0, 0, "red")
+        t.pixel_size(50)
+        t.pixel(1.5, 0.5, "green")
+        self.assertImageEquals("test_img/test_pixel.png")
+
+    def test_1x1_pixel(self):
+        self.setUp(10, 10)
+        t = self.turtle
+        t.pixel(0, 0, "black")
+        t.pixel(1, 0, "red")
+        t.pixel(1, 1, "green")
+        t.pixel(0, 1, "blue")
+        t.pixel(-1, 1, "yellow")
+        t.pixel(-1, 0, "magenta")
+        t.pixel(-1, -1, "cyan")
+        t.pixel(0, -1, "orange")
+        t.pixel(1, -1, "purple")
+        self.assertImageEquals("test_img/test_1x1_pixel.png")
