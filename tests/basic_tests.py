@@ -65,6 +65,26 @@ class BasicSquareTest(TestCase2):
         t.penup()
         self.assertEqual(False, t.isdown())
 
+    def test_circle_interface(self):
+        t = self.turtle
+        t.circle(2)
+        t.rt(45)
+        print(t.heading())
+        t.circle(2, 45)
+        print(t.heading())
+        print(self.canvas.log)
+        self.assertContainersAlmostEqual(
+            self.canvas.log,
+            [
+                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
+                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, 2 * pi],
+                ['refreshed_turtle', [[0, 0], 2 * pi + pi/2, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 2 * pi + pi/2 + pi/4, 1, 1]],
+                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, pi/3],
+                ['refreshed_turtle', [[2 - 2 ** 0.5, 2 ** 0.5], 2 * pi + pi/2 - pi/4 + pi/4, 1, 1]],
+            ]
+        )
+
     def test_distance(self):
         t1 = self.turtle
         t1.setpos(3, 8)
