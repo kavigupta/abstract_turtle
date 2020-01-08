@@ -232,12 +232,6 @@ class BasicSquareTest(unittest.TestCase):
         t.fd(100)
         t.circle(100, 90)
         t.fd(100)
-        t.circle(50, -90)
-        t.fd(100)
-        t.circle(-50, 90)
-        t.fd(100)
-        t.circle(-50, -90)
-        t.fd(100)
         t.end_fill()
         self.assertImageEquals("test_img/partial_circle_fill.png")
 
