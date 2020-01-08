@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from collections import namedtuple
 
 from math import sin, cos
@@ -77,15 +77,26 @@ def rotate(x, y, theta):
 
 
 class Path(ABC):
-    def to_points(self):
+    @abstractmethod
+    def to_points(self, divisions=100):
         """
         Return an iterable of points corresponding to this path element
         """
 
+    @abstractmethod
+    def json_friendly(self):
+        """
+        Converts the given path to a JSON compatible object.
+        """
+
 
 class LineTo(Path, namedtuple("MoveTo", ["position"])):
-    def to_points(self):
+    def to_points(self, divisions=100):
+        del divisions
         return [self.position]
+
+    def json_friendly(self):
+        return ["line", self.position]
 
 
 class Arc(Path, namedtuple("Arc", ["center", "radius", "start_angle", "end_angle"])):
@@ -93,9 +104,11 @@ class Arc(Path, namedtuple("Arc", ["center", "radius", "start_angle", "end_angle
     CENTER is the center of the arc
     START_ANGLE and END_ANGLE are the starting and ending angles of the arc measured in radians CCW from the x-axis
     """
-    divisions = 100
 
-    def to_points(self):
-        for i in range(self.divisions + 1):
-            ang = self.start_angle + (i / self.divisions) * (self.end_angle - self.start_angle)
+    def to_points(self, divisions=100):
+        for i in range(divisions + 1):
+            ang = self.start_angle + (i / divisions) * (self.end_angle - self.start_angle)
             yield Position(self.center.x + self.radius * cos(ang), self.center.y + self.radius * sin(ang))
+
+    def json_friendly(self):
+        return ["arc", self.center, self.radius, self.start_angle, self.end_angle]
