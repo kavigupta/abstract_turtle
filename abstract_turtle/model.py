@@ -90,7 +90,7 @@ class Path(ABC):
         """
 
 
-class LineTo(Path, namedtuple("MoveTo", ["position"])):
+class LineTo(Path, namedtuple("LineTo", ["position"])):
     def to_points(self, divisions=100):
         del divisions
         return [self.position]
