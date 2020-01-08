@@ -225,6 +225,13 @@ class BasicSquareTest(unittest.TestCase):
         t.fd(100)
         self.assertImageEquals("test_img/partial_circle.png")
 
+    def test_simple_partial_circle(self):
+        t = self.turtle
+        t.fd(100)
+        t.circle(100, 90)
+        t.fd(100)
+        self.assertImageEquals("test_img/simple_partial_circle.png")
+
     def test_pixel(self):
         t = self.turtle
         t.pixel_size(100)
