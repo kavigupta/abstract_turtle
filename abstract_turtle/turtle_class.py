@@ -231,7 +231,7 @@ class BaseTurtle:
 
     def __update_turtle(self):
         if self.__turtle_is_shown:
-            self.__canvas.turtle = DrawnTurtle(self.__current_pos, self.__theta, self.__turtle_stretch_wid, self.__turtle_stretch_len)
+            self.__canvas.turtle = DrawnTurtle(self.__current_pos, self.__theta % (2 * pi), self.__turtle_stretch_wid, self.__turtle_stretch_len)
         else:
             self.__canvas.turtle = None
 
@@ -272,10 +272,10 @@ class BaseTurtle:
         return Position(self.__x, self.__y)
 
     def __to_real_angle(self, amount):
-        return (1 / 4 - amount / self.__degrees) * (2 * pi)
+        return (1 / 4 + amount / self.__degrees) * (2 * pi)
 
     def __from_real_angle(self, angle):
-        return (1/4 - angle / (2 * pi)) * self.__degrees
+        return (-1/4 + angle / (2 * pi)) * self.__degrees % self.__degrees
 
     @staticmethod
     def __convert_color(*color):
@@ -300,7 +300,7 @@ class Turtle(BaseTurtle):
         """
         Rotate right the given amount.
         """
-        self.setheading(self.heading() + amount)
+        self.setheading(self.heading() - amount)
     rt = right
 
     @turtle_method

@@ -12,7 +12,7 @@ class TestTurtleModule(unittest.TestCase):
         canvas = LoggingCanvas(1000, 1000)
         set_canvas(canvas)
         fd(100)
-        rt(90)
+        lt(90)
         self.assertAlmostEqual(0, xcor())
         self.assertAlmostEqual(100, ycor())
         self.assertAlmostEqual(90, heading())

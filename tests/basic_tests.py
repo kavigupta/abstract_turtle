@@ -39,11 +39,16 @@ class BasicSquareTest(TestCase2):
     def test_degrees(self):
         t = self.turtle
         t.rt(45)
-        self.assertEqual(45, t.heading())
+        self.assertEqual(360-45, t.heading())
         t.degrees(400)
-        self.assertAlmostEqual(50, t.heading())
+        self.assertAlmostEqual(400-50, t.heading())
         t.radians()
-        self.assertAlmostEqual(pi/4, t.heading())
+        self.assertAlmostEqual(2*pi - pi/4, t.heading())
+
+    def test_set_heading(self):
+        t = self.turtle
+        t.setheading(45)
+        self.assertEqual(45, t.heading())
 
     def test_home(self):
         t = self.turtle
