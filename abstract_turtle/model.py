@@ -1,4 +1,4 @@
-
+from abc import ABC, abstractmethod
 from collections import namedtuple
 
 from math import sin, cos
@@ -74,3 +74,44 @@ class DrawnTurtle(namedtuple('DrawnTurtle', ['pos', 'heading', 'stretch_wid', 's
 
 def rotate(x, y, theta):
     return x * cos(theta) - y * sin(theta), x * sin(theta) + y * cos(theta)
+
+
+class Path(ABC):
+    @abstractmethod
+    def to_points(self, divisions=100):
+        """
+        Return an iterable of points corresponding to this path element
+        """
+
+    @property
+    @abstractmethod
+    def json_friendly(self):
+        """
+        Converts the given path to a JSON compatible object.
+        """
+
+
+class LineTo(Path, namedtuple("LineTo", ["position"])):
+    def to_points(self, divisions=100):
+        del divisions
+        return [self.position]
+
+    @property
+    def json_friendly(self):
+        return ["line", self.position]
+
+
+class Arc(Path, namedtuple("Arc", ["center", "radius", "start_angle", "end_angle"])):
+    """
+    CENTER is the center of the arc
+    START_ANGLE and END_ANGLE are the starting and ending angles of the arc measured in radians CCW from the x-axis
+    """
+
+    def to_points(self, divisions=100):
+        for i in range(divisions + 1):
+            ang = self.start_angle + (i / divisions) * (self.end_angle - self.start_angle)
+            yield Position(self.center.x + self.radius * cos(ang), self.center.y + self.radius * sin(ang))
+
+    @property
+    def json_friendly(self):
+        return ["arc", self.center, self.radius, self.start_angle, self.end_angle]
