@@ -50,7 +50,7 @@ class PillowCanvas(Canvas):
             points += movement.to_points()
         self.draw.polygon(
             [self.tr_pos(point) for point in points],
-            fill=self.tr_color(color),
+            fill=self.tr_color(color)
         )
 
     def axis_aligned_rectangle(self, bottom_left, width, height, color):
