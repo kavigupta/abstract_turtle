@@ -70,6 +70,44 @@ class BasicSquareTest(TestCase2):
         t.penup()
         self.assertEqual(False, t.isdown())
 
+    def test_full_circle(self):
+        t = self.turtle
+        t.circle(2)
+        self.assertContainersAlmostEqual(
+            self.canvas.log,
+            [
+                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
+                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, 2*pi],
+                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
+            ]
+        )
+
+    def test_part_circle(self):
+        t = self.turtle
+        t.circle(2, 45)
+        self.assertContainersAlmostEqual(
+            self.canvas.log,
+            [
+                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
+                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, pi/4],
+                ['refreshed_turtle', [[2**0.5-2, 2**0.5], 3*pi/4, 1, 1]],
+            ]
+        )
+
+    def test_rotated_full_circle(self):
+        t = self.turtle
+        t.lt(45)
+        t.circle(2, 45)
+        self.assertContainersAlmostEqual(
+            self.canvas.log,
+            [
+                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 3*pi/4, 1, 1]],
+                ['draw_circle', [-2**0.5, -2**0.5, 2], [0, 0, 0], 1, False, pi/4, pi/2],
+                ['refreshed_turtle', [[-2**0.5, 2 - 2**0.5], pi, 1, 1]],
+            ]
+        )
+
     def test_distance(self):
         t1 = self.turtle
         t1.setpos(3, 8)

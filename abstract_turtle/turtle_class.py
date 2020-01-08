@@ -1,4 +1,4 @@
-from math import pi, sin, cos
+from math import pi, sin, cos, copysign
 
 from .model import Color, Position, DrawnTurtle
 from .canvas import Canvas
@@ -64,12 +64,34 @@ class BaseTurtle:
     seth = setheading
 
     @turtle_method
-    def circle(self, radius):
+    def circle(self, radius, extent=360):
         """
-        Draw a circle at the given point with the given RADIUS
+        Draw a circle starting at the given point with the given RADIUS and EXTENT. If EXTENT exists, draw only the
+        first EXTENT degrees of the circle. If RADIUS is positive, draw in the counterclockwise direction.
+        Otherwise, draw in the clockwise direction.
         """
+
+        extent = extent / self.__degrees * (2 * pi)
+
+        center = Position(
+            self.__current_pos.x - radius * sin(self.__theta),
+            self.__current_pos.y + radius * cos(self.__theta),
+        )
+        angle_change = copysign(1, radius) * extent
         if self.__pen_down:
-            self.__canvas.draw_circle(self.__current_pos, radius, self.__pen_color, self.__line_width, False)
+            start_angle = self.__theta - pi / 2 * copysign(1, radius)
+            end_angle = start_angle + angle_change
+            if radius * extent < 0:
+                start_angle, end_angle = end_angle, start_angle
+            self.__canvas.draw_circle(center, abs(radius), self.__pen_color, self.__line_width, False, start_angle,
+                                      end_angle)
+        final_pos = Position(
+            center.x + radius * sin(self.__theta + angle_change),
+            center.y - radius * cos(self.__theta + angle_change),
+        )
+        self.__theta += angle_change
+        self.__x, self.__y = final_pos.x, final_pos.y
+        self.__update_turtle()
 
     @turtle_method
     def dot(self, size=None):
@@ -80,7 +102,7 @@ class BaseTurtle:
         if size is None:
             size = max(self.__line_width + 4, self.__line_width * 2)
         if self.__pen_down:
-            self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True)
+            self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True, 0, 2 * pi)
 
     @turtle_method
     def pixel(self, x, y, *color):
