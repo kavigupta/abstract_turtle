@@ -81,6 +81,7 @@ class BasicSquareTest(unittest.TestCase):
 
     def test_circle(self):
         t = self.turtle
+        t.fd(100)
         t.circle(100)
         t.fd(100)
         self.assertImageEquals("test_img/basic_circle.png")
@@ -210,3 +211,16 @@ class BasicSquareTest(unittest.TestCase):
         t.pencolor("#1fb")
         t.fd(100)
         self.assertImageEquals("test_img/color_strings.png")
+
+    def test_partial_circle(self):
+        t = self.turtle
+        t.fd(100)
+        t.circle(100, 90)
+        t.fd(100)
+        t.circle(50, -90)
+        t.fd(100)
+        t.circle(-50, 90)
+        t.fd(100)
+        t.circle(-50, -90)
+        t.fd(100)
+        self.assertImageEquals("test_img/partial_circle.png")

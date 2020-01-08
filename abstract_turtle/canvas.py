@@ -33,11 +33,11 @@ class Canvas(ABC):
             self.draw_circle(end, width / 2, color, width, True)
 
     @abstractmethod
-    def draw_circle(self, center, radius, color, width, is_filled, extent=2 * pi):
+    def draw_circle(self, center, radius, color, width, is_filled, start=0, end=2*pi):
         """
-        Draw a circle of width 1 with the given center CENTER, radius RADIUS, and color COLOR
-        If EXTENT exists, draw only the first EXTENT degrees of the circle. If RADIUS is positive,
-        draw in the counterclockwise direction. Otherwise, draw in the clockwise direction.
+        Draw a circle of width 1 with the given center CENTER, radius RADIUS, and color COLOR.
+        Only draw the portion with angle between START and END, moving counterclockwise from START to END.
+        RADIUS must be non-negative.
 
         Fill the circle if IS_FILLED is true.
         """
