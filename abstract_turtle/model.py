@@ -83,6 +83,7 @@ class Path(ABC):
         Return an iterable of points corresponding to this path element
         """
 
+    @property
     @abstractmethod
     def json_friendly(self):
         """
@@ -95,6 +96,7 @@ class LineTo(Path, namedtuple("LineTo", ["position"])):
         del divisions
         return [self.position]
 
+    @property
     def json_friendly(self):
         return ["line", self.position]
 
@@ -110,5 +112,6 @@ class Arc(Path, namedtuple("Arc", ["center", "radius", "start_angle", "end_angle
             ang = self.start_angle + (i / divisions) * (self.end_angle - self.start_angle)
             yield Position(self.center.x + self.radius * cos(ang), self.center.y + self.radius * sin(ang))
 
+    @property
     def json_friendly(self):
         return ["arc", self.center, self.radius, self.start_angle, self.end_angle]
