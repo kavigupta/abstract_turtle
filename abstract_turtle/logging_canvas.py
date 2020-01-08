@@ -17,7 +17,7 @@ class AbstractLoggingCanvas(Canvas):
     def draw_rectangular_line(self, start, end, color, width):
         self.on_action(['draw_rectangular_line', [start.x, start.y, end.x, end.y], color, width])
 
-    def draw_circle(self, center, radius, color, width, is_filled, start=0, end=2*pi):
+    def draw_circle(self, center, radius, color, width, is_filled, start, end):
         self.on_action(['draw_circle', [center.x, center.y, radius], color, width, is_filled, start, end])
 
     def fill_polygon(self, points, color):

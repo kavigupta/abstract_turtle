@@ -27,13 +27,13 @@ class Canvas(ABC):
 
     def draw_line(self, start, end, color, width):
         if width > 1:
-            self.draw_circle(start, width / 2, color, width, True)
+            self.draw_circle(start, width / 2, color, width, True, 0, 2 * pi)
         self.draw_rectangular_line(start, end, color, width)
         if width > 1:
-            self.draw_circle(end, width / 2, color, width, True)
+            self.draw_circle(end, width / 2, color, width, True, 0, 2 * pi)
 
     @abstractmethod
-    def draw_circle(self, center, radius, color, width, is_filled, start=0, end=2*pi):
+    def draw_circle(self, center, radius, color, width, is_filled, start, end):
         """
         Draw a circle of width 1 with the given center CENTER, radius RADIUS, and color COLOR.
         Only draw the portion with angle between START and END, moving counterclockwise from START to END.

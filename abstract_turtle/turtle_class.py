@@ -83,9 +83,8 @@ class BaseTurtle:
             end_angle = start_angle + angle_change
             if radius * extent < 0:
                 start_angle, end_angle = end_angle, start_angle
-            self.__canvas.draw_circle(
-                center, abs(radius), self.__pen_color, self.__line_width, False, start_angle, end_angle
-            )
+            self.__canvas.draw_circle(center, abs(radius), self.__pen_color, self.__line_width, False, start_angle,
+                                      end_angle)
         final_pos = Position(
             center.x + radius * sin(self.__theta + angle_change),
             center.y - radius * cos(self.__theta + angle_change),
@@ -103,7 +102,7 @@ class BaseTurtle:
         if size is None:
             size = max(self.__line_width + 4, self.__line_width * 2)
         if self.__pen_down:
-            self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True)
+            self.__canvas.draw_circle(self.__current_pos, size, self.__pen_color, self.__line_width, True, 0, 2 * pi)
 
     @turtle_method
     def pixel(self, x, y, *color):
