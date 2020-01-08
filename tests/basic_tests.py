@@ -108,6 +108,33 @@ class BasicSquareTest(TestCase2):
             ]
         )
 
+    def test_partial_circle_fill(self):
+        t = self.turtle
+        t.pu()
+        t.begin_fill()
+        t.fillcolor("red")
+        t.fd(100)
+        t.circle(100, 90)
+        t.fd(100)
+        t.end_fill()
+        self.assertContainersAlmostEqual(
+            self.canvas.log,
+            [
+                ['refreshed_turtle', [[0, 0],       pi/2, 1, 1]],
+                ['refreshed_turtle', [[0, 100],     pi/2, 1, 1]],
+                ['refreshed_turtle', [[-100, 200],  pi, 1, 1]],
+                ['refreshed_turtle', [[-200, 200],  pi, 1, 1]],
+                ['fill_path', [
+                        ['line', [0, 0]],
+                        ['line', [0, 100]],
+                        ['arc', [-100, 100], 100, 0, pi / 2],
+                        ['line', [-200, 200]]
+                    ],
+                    [255, 0, 0]
+                ]
+            ]
+        )
+
     def test_distance(self):
         t1 = self.turtle
         t1.setpos(3, 8)

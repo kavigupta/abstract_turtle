@@ -21,7 +21,7 @@ class AbstractLoggingCanvas(Canvas):
         self.on_action(['draw_circle', [center.x, center.y, radius], color, width, is_filled, start, end])
 
     def fill_path(self, path, color):
-        self.on_action(['fill_path', path.json_friendly, color])
+        self.on_action(['fill_path', [edge.json_friendly for edge in path], color])
 
     def axis_aligned_rectangle(self, bottom_left, width, height, color):
         self.on_action(['axis_aligned_rectangle', [bottom_left.x, bottom_left.y], width, height, color])
