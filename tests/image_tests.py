@@ -128,7 +128,7 @@ class BasicSquareTest(unittest.TestCase):
         self.assertEqual((100, 100), t.pos())
         t.setx(0)
         t.sety(0)
-        t.setheading(45)
+        t.setheading(-45)
         t.fd(100)
         self.assertImageEquals("test_img/set_various_things.png")
 
