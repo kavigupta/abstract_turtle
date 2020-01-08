@@ -252,7 +252,7 @@ class BaseTurtle:
         return (1 / 4 + amount / self.__degrees) * (2 * pi)
 
     def __from_real_angle(self, angle):
-        return (-1/4 + angle / (2 * pi)) * self.__degrees
+        return (-1/4 + angle / (2 * pi)) * self.__degrees % self.__degrees
 
     @staticmethod
     def __convert_color(*color):
