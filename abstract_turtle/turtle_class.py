@@ -64,13 +64,15 @@ class BaseTurtle:
     seth = setheading
 
     @turtle_method
-    def circle(self, radius, extent=360):
+    def circle(self, radius, extent=None):
         """
         Draw a circle starting at the given point with the given RADIUS and EXTENT. If EXTENT exists, draw only the
         first EXTENT degrees of the circle. If RADIUS is positive, draw in the counterclockwise direction.
         Otherwise, draw in the clockwise direction.
         """
-
+        if extent is None:
+            extent = 360
+        
         extent = extent / self.__degrees * (2 * pi)
 
         center = Position(
