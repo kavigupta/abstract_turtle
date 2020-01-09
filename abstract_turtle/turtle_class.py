@@ -71,7 +71,7 @@ class BaseTurtle:
         Otherwise, draw in the clockwise direction.
         """
         if extent is None:
-            extent = 360
+            extent = self.__degrees
         
         extent = extent / self.__degrees * (2 * pi)
 
