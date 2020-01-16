@@ -13,8 +13,8 @@ class TestTurtleModule(unittest.TestCase):
         set_canvas(canvas)
         fd(100)
         lt(90)
-        self.assertAlmostEqual(0, xcor())
-        self.assertAlmostEqual(100, ycor())
+        self.assertAlmostEqual(100, xcor())
+        self.assertAlmostEqual(0, ycor())
         self.assertAlmostEqual(90, heading())
         self.assertEqual(
             {'draw_rectangular_line' : 1, 'refreshed_turtle' : 3},

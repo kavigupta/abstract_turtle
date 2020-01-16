@@ -184,3 +184,10 @@ class BasicSquareTest(TestCase2):
             self.fail()
         except RuntimeError as e:
             self.assertEqual(str(e), "Invalid color. Expected either 3 ints or 1 string, but got: int, float, int")
+
+    def test_mode(self):
+        t = self.turtle
+        t.mode("standard")
+        self.assertEqual(t.mode(), "standard")
+        t.mode("logo")
+        self.assertEqual(t.mode(), "logo")

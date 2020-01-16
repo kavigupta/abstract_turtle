@@ -311,7 +311,7 @@ class BaseTurtle:
     @turtle_method
     def mode(self, mode=None):
         if mode is None:
-            return str(self.__mode)
+            return self.__mode.value
         elif mode == "standard":
             self.__mode = Mode.STANDARD
         elif mode == "logo":
