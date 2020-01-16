@@ -163,6 +163,20 @@ class BaseTurtle:
         self.__pixel_size = pixel_size
 
     @turtle_method
+    def canvas_width(self):
+        """
+        Return the current screen size in pixel units
+        """
+        return self.__canvas.width // self.__pixel_size
+
+    @turtle_method
+    def canvas_height(self):
+        """
+        Return the current screen size in pixel units
+        """
+        return self.__canvas.height // self.__pixel_size
+
+    @turtle_method
     def xcor(self):
         """
         Get the current x coordinate

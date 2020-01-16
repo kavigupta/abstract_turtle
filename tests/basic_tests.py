@@ -9,8 +9,8 @@ from .utils import TestCase2
 
 class BasicSquareTest(TestCase2):
 
-    def setUp(self):
-        self.canvas = LoggingCanvas(1000, 1000)
+    def setUp(self, width=1000, height=1000):
+        self.canvas = LoggingCanvas(width, height)
         self.turtle = Turtle(self.canvas)
 
     def assertPositionAlmostEqual(self, t, pos):
@@ -191,3 +191,26 @@ class BasicSquareTest(TestCase2):
         self.assertEqual(t.mode(), "standard")
         t.mode("logo")
         self.assertEqual(t.mode(), "logo")
+
+    def test_width_height_default(self):
+        t = self.turtle
+        self.assertEqual(t.canvas_width(), 1000)
+        self.assertEqual(t.canvas_height(), 1000)
+        t.pixel_size(2)
+        self.assertEqual(t.canvas_width(), 500)
+        self.assertEqual(t.canvas_height(), 500)
+        t.pixel_size(3)
+        self.assertEqual(t.canvas_width(), 333)
+        self.assertEqual(t.canvas_height(), 333)
+
+    def test_width_height_diff_sizes(self):
+        self.setUp(200, 500)
+        t = self.turtle
+        self.assertEqual(t.canvas_width(), 200)
+        self.assertEqual(t.canvas_height(), 500)
+        t.pixel_size(2)
+        self.assertEqual(t.canvas_width(), 100)
+        self.assertEqual(t.canvas_height(), 250)
+        t.pixel_size(3)
+        self.assertEqual(t.canvas_width(), 66)
+        self.assertEqual(t.canvas_height(), 166)
