@@ -1,6 +1,7 @@
+from functools import wraps
 from math import pi, sin, cos, copysign
 
-from .model import Color, Position, DrawnTurtle
+from .model import Color, Position, DrawnTurtle, Mode
 from .canvas import Canvas
 
 def turtle_method(func):
@@ -9,6 +10,39 @@ def turtle_method(func):
     """
     func.is_turtle_method = True
     return func
+
+
+def make_formode():
+    handlers = {}
+
+    def formode(mode):
+        def decorator(func):
+            @wraps(func)
+            def error(self, *args, **kwargs):
+                raise RuntimeError(
+                    "Handler not available for mode: {}".format(self._BaseTurtle__mode)
+                )
+
+            prev = handlers.get(func.__name__, error)
+
+            @wraps(func)
+            def handler(self, *args, **kwargs):
+                if self._BaseTurtle__mode == mode:
+                    return func(self, *args, **kwargs)
+                else:
+                    return prev(self, *args, **kwargs)
+
+            handlers[func.__name__] = handler
+
+            return handler
+
+        return decorator
+
+    return formode
+
+
+formode = make_formode()
+
 
 class BaseTurtle:
     """
@@ -29,6 +63,7 @@ class BaseTurtle:
         self.__turtle_stretch_wid = 1
         self.__turtle_stretch_len = 1
         self.__pixel_size = 1
+        self.__mode = Mode.STANDARD
 
         self.__update_turtle()
 
@@ -266,15 +301,39 @@ class BaseTurtle:
         self.__update_turtle()
     turtlesize = shapesize
 
+    @turtle_method
+    def mode(self, mode):
+        if mode == "standard":
+            self.__mode = Mode.STANDARD
+        elif mode == "logo":
+            self.__mode = Mode.LOGO
+        elif mode == "world":
+            raise RuntimeError("Custom world coordinates not supported.")
+        else:
+            raise RuntimeError("Unknown mode: {}".format(mode))
+        self.goto(0, 0)
+        self.setheading(0)
+        self.clear()
+
     @property
     def __current_pos(self):
         return Position(self.__x, self.__y)
 
+    @formode(Mode.STANDARD)
+    def __to_real_angle(self, amount):
+        return (1 / 4 + amount / self.__degrees) * (2 * pi)
+
+    @formode(Mode.LOGO)
     def __to_real_angle(self, amount):
         return (1 / 4 - amount / self.__degrees) * (2 * pi)
 
+    @formode(Mode.STANDARD)
     def __from_real_angle(self, angle):
-        return (1/4 - angle / (2 * pi)) * self.__degrees % self.__degrees
+        return (- 1 / 4 + angle / (2 * pi)) * self.__degrees % self.__degrees
+
+    @formode(Mode.LOGO)
+    def __from_real_angle(self, angle):
+        return (1 / 4 - angle / (2 * pi)) * self.__degrees % self.__degrees
 
     @staticmethod
     def __convert_color(*color):
@@ -294,12 +353,18 @@ class Turtle(BaseTurtle):
         self.forward(-amount)
     bk = back = backward
 
+    @formode(Mode.STANDARD)
+    def right(self, amount):
+        self.setheading(self.heading() - amount)
+
     @turtle_method
+    @formode(Mode.LOGO)
     def right(self, amount):
         """
         Rotate right the given amount.
         """
         self.setheading(self.heading() + amount)
+
     rt = right
 
     @turtle_method

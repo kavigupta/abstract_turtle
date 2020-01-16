@@ -1,5 +1,6 @@
 
 from collections import namedtuple
+from enum import Enum
 
 from math import sin, cos
 
@@ -71,6 +72,12 @@ class DrawnTurtle(namedtuple('DrawnTurtle', ['pos', 'heading', 'stretch_wid', 's
             self.stretch_wid,
             self.stretch_len
         ]
+
+
+class Mode(Enum):
+    LOGO = "logo"
+    STANDARD = "standard"
+
 
 def rotate(x, y, theta):
     return x * cos(theta) - y * sin(theta), x * sin(theta) + y * cos(theta)
