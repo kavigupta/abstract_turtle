@@ -44,7 +44,10 @@ class PillowCanvas(Canvas):
         else:
             self.draw.arc(box, -end * 180 / pi, -start * 180 / pi, fill=self.tr_color(color), width=width)
 
-    def fill_polygon(self, points, color):
+    def fill_path(self, path, color):
+        points = []
+        for movement in path:
+            points += movement.to_points()
         self.draw.polygon(
             [self.tr_pos(point) for point in points],
             fill=self.tr_color(color)

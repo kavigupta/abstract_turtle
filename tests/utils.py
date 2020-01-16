@@ -18,6 +18,8 @@ class FuzzyFloat(float):
             return 2 * abs(self - other) <= 10 ** (-self.__places)
         else:
             return super().__eq__(self, other)
+    def __repr__(self):
+        return repr(round(self, self.__places + 2))
 
 def fuzzify(obj, places):
     if isinstance(obj, str):
