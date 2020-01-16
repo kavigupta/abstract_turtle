@@ -121,15 +121,15 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0],       pi/2, 1, 1]],
-                ['refreshed_turtle', [[0, 100],     pi/2, 1, 1]],
-                ['refreshed_turtle', [[-100, 200],  pi, 1, 1]],
-                ['refreshed_turtle', [[-200, 200],  pi, 1, 1]],
+                ['refreshed_turtle', [[0, 0],       0, 1, 1]],
+                ['refreshed_turtle', [[100, 0],     0, 1, 1]],
+                ['refreshed_turtle', [[200, 100],  pi/2, 1, 1]],
+                ['refreshed_turtle', [[200, 200],  pi/2, 1, 1]],
                 ['fill_path', [
                         ['line', [0, 0]],
-                        ['line', [0, 100]],
-                        ['arc', [-100, 100], 100, 0, pi / 2],
-                        ['line', [-200, 200]]
+                        ['line', [100, 0]],
+                        ['arc', [100, 100], 100, -pi / 2, 0],
+                        ['line', [200, 200]]
                     ],
                     [255, 0, 0]
                 ]
