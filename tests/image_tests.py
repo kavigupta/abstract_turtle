@@ -7,7 +7,7 @@ from PIL import Image
 from abstract_turtle import Turtle, PillowCanvas
 
 # set this to true to create the images
-REFRESH_IMAGES = True
+REFRESH_IMAGES = False
 
 class BasicSquareTest(unittest.TestCase):
 
