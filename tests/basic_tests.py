@@ -21,13 +21,13 @@ class BasicSquareTest(TestCase2):
         self.assertPositionAlmostEqual(t, (0, 0))
         t.fd(100)
         t.rt(90)
-        self.assertPositionAlmostEqual(t, (0, 100))
-        t.fd(100)
-        t.rt(90)
-        self.assertPositionAlmostEqual(t, (100, 100))
-        t.fd(100)
-        t.rt(90)
         self.assertPositionAlmostEqual(t, (100, 0))
+        t.fd(100)
+        t.rt(90)
+        self.assertPositionAlmostEqual(t, (100, -100))
+        t.fd(100)
+        t.rt(90)
+        self.assertPositionAlmostEqual(t, (0, -100))
         t.fd(100)
         t.rt(90)
         self.assertPositionAlmostEqual(t, (0, 0))
@@ -36,6 +36,7 @@ class BasicSquareTest(TestCase2):
             {'draw_rectangular_line' : 4, 'refreshed_turtle' : 9},
             Counter([func for func, *_ in self.canvas.log])
         )
+
     def test_degrees(self):
         t = self.turtle
         t.rt(45)
@@ -76,9 +77,9 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
-                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, 2*pi],
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
+                ['draw_circle', [0, 2, 2], [0, 0, 0], 1, False, -pi/2, 3*pi/2],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
             ]
         )
 
@@ -88,9 +89,9 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
-                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, pi/4],
-                ['refreshed_turtle', [[2**0.5-2, 2**0.5], 3*pi/4, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
+                ['draw_circle', [0, 2, 2], [0, 0, 0], 1, False, -pi/2, -pi/4],
+                ['refreshed_turtle', [[2**0.5, 2 - 2**0.5], pi/4, 1, 1]],
             ]
         )
 
@@ -101,10 +102,10 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
-                ['refreshed_turtle', [[0, 0], 3*pi/4, 1, 1]],
-                ['draw_circle', [-2**0.5, -2**0.5, 2], [0, 0, 0], 1, False, pi/4, pi/2],
-                ['refreshed_turtle', [[-2**0.5, 2 - 2**0.5], pi, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
+                ['refreshed_turtle', [[0, 0], pi/4, 1, 1]],
+                ['draw_circle', [-2**0.5, 2**0.5, 2], [0, 0, 0], 1, False, -pi/4, 0],
+                ['refreshed_turtle', [[2 - 2**0.5, 2**0.5], pi/2, 1, 1]],
             ]
         )
 
@@ -120,15 +121,15 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0],       pi/2, 1, 1]],
-                ['refreshed_turtle', [[0, 100],     pi/2, 1, 1]],
-                ['refreshed_turtle', [[-100, 200],  pi, 1, 1]],
-                ['refreshed_turtle', [[-200, 200],  pi, 1, 1]],
+                ['refreshed_turtle', [[0, 0],       0, 1, 1]],
+                ['refreshed_turtle', [[100, 0],     0, 1, 1]],
+                ['refreshed_turtle', [[200, 100],  pi/2, 1, 1]],
+                ['refreshed_turtle', [[200, 200],  pi/2, 1, 1]],
                 ['fill_path', [
                         ['line', [0, 0]],
-                        ['line', [0, 100]],
-                        ['arc', [-100, 100], 100, 0, pi / 2],
-                        ['line', [-200, 200]]
+                        ['line', [100, 0]],
+                        ['arc', [100, 100], 100, -pi / 2, 0],
+                        ['line', [200, 200]]
                     ],
                     [255, 0, 0]
                 ]
@@ -183,3 +184,10 @@ class BasicSquareTest(TestCase2):
             self.fail()
         except RuntimeError as e:
             self.assertEqual(str(e), "Invalid color. Expected either 3 ints or 1 string, but got: int, float, int")
+
+    def test_mode(self):
+        t = self.turtle
+        t.mode("standard")
+        self.assertEqual(t.mode(), "standard")
+        t.mode("logo")
+        self.assertEqual(t.mode(), "logo")
