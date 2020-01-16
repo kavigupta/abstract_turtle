@@ -7,7 +7,7 @@ from PIL import Image
 from abstract_turtle import Turtle, PillowCanvas
 
 # set this to true to create the images
-REFRESH_IMAGES = False
+REFRESH_IMAGES = True
 
 class BasicSquareTest(unittest.TestCase):
 
@@ -253,3 +253,22 @@ class BasicSquareTest(unittest.TestCase):
         t.pixel(0, -1, "orange")
         t.pixel(1, -1, "purple")
         self.assertImageEquals("test_img/test_1x1_pixel.png")
+
+    def test_standard_mode(self):
+        t = self.turtle
+        t.fd(100)  # should move to the east
+        t.lt(90)  # should face north
+        t.fd(100)  # should move north
+        t.setheading(-90)  # should face south
+        t.fd(200)  # should move south
+        self.assertImageEquals("test_img/test_standard_mode.png")
+
+    def test_logo_mode(self):
+        t = self.turtle
+        t.mode("logo")
+        t.fd(100)  # should move to the north
+        t.lt(90)  # should face west
+        t.fd(100)  # should move west
+        t.setheading(-90)  # should stay facing west
+        t.fd(200)  # should move west
+        self.assertImageEquals("test_img/test_logo_mode.png")

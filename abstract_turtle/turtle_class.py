@@ -53,7 +53,7 @@ class BaseTurtle:
         self.__x = 0
         self.__y = 0
         self.__line_width = 1
-        self.__theta = pi/2
+        self.__theta = 0
         self.__pen_color = Color(0, 0, 0)
         self.__fill_color = Color(0, 0, 0)
         self.__pen_down = True
@@ -321,15 +321,15 @@ class BaseTurtle:
 
     @formode(Mode.STANDARD)
     def __to_real_angle(self, amount):
-        return (1 / 4 + amount / self.__degrees) * (2 * pi)
+        return (amount / self.__degrees) * (2 * pi)
+
+    @formode(Mode.STANDARD)
+    def __from_real_angle(self, angle):
+        return (angle / (2 * pi)) * self.__degrees % self.__degrees
 
     @formode(Mode.LOGO)
     def __to_real_angle(self, amount):
         return (1 / 4 - amount / self.__degrees) * (2 * pi)
-
-    @formode(Mode.STANDARD)
-    def __from_real_angle(self, angle):
-        return (- 1 / 4 + angle / (2 * pi)) * self.__degrees % self.__degrees
 
     @formode(Mode.LOGO)
     def __from_real_angle(self, angle):
