@@ -309,8 +309,10 @@ class BaseTurtle:
     turtlesize = shapesize
 
     @turtle_method
-    def mode(self, mode):
-        if mode == "standard":
+    def mode(self, mode=None):
+        if mode is None:
+            return str(self.__mode)
+        elif mode == "standard":
             self.__mode = Mode.STANDARD
         elif mode == "logo":
             self.__mode = Mode.LOGO

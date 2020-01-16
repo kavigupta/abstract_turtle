@@ -21,13 +21,13 @@ class BasicSquareTest(TestCase2):
         self.assertPositionAlmostEqual(t, (0, 0))
         t.fd(100)
         t.rt(90)
-        self.assertPositionAlmostEqual(t, (0, 100))
-        t.fd(100)
-        t.rt(90)
-        self.assertPositionAlmostEqual(t, (100, 100))
-        t.fd(100)
-        t.rt(90)
         self.assertPositionAlmostEqual(t, (100, 0))
+        t.fd(100)
+        t.rt(90)
+        self.assertPositionAlmostEqual(t, (100, -100))
+        t.fd(100)
+        t.rt(90)
+        self.assertPositionAlmostEqual(t, (0, -100))
         t.fd(100)
         t.rt(90)
         self.assertPositionAlmostEqual(t, (0, 0))
@@ -77,9 +77,9 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
-                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, 2*pi],
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
+                ['draw_circle', [0, 2, 2], [0, 0, 0], 1, False, -pi/2, 3*pi/2],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
             ]
         )
 
@@ -89,9 +89,9 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
-                ['draw_circle', [-2, 0, 2], [0, 0, 0], 1, False, 0, pi/4],
-                ['refreshed_turtle', [[2**0.5-2, 2**0.5], 3*pi/4, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
+                ['draw_circle', [0, 2, 2], [0, 0, 0], 1, False, -pi/2, -pi/4],
+                ['refreshed_turtle', [[2**0.5, 2 - 2**0.5], pi/4, 1, 1]],
             ]
         )
 
@@ -102,10 +102,10 @@ class BasicSquareTest(TestCase2):
         self.assertContainersAlmostEqual(
             self.canvas.log,
             [
-                ['refreshed_turtle', [[0, 0], pi/2, 1, 1]],
-                ['refreshed_turtle', [[0, 0], 3*pi/4, 1, 1]],
-                ['draw_circle', [-2**0.5, -2**0.5, 2], [0, 0, 0], 1, False, pi/4, pi/2],
-                ['refreshed_turtle', [[-2**0.5, 2 - 2**0.5], pi, 1, 1]],
+                ['refreshed_turtle', [[0, 0], 0, 1, 1]],
+                ['refreshed_turtle', [[0, 0], pi/4, 1, 1]],
+                ['draw_circle', [-2**0.5, 2**0.5, 2], [0, 0, 0], 1, False, -pi/4, 0],
+                ['refreshed_turtle', [[2 - 2**0.5, 2**0.5], pi/2, 1, 1]],
             ]
         )
 
