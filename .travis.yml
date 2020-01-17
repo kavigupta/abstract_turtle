@@ -7,6 +7,7 @@ python:
   - "3.8"
 
 install:
+  - sudo apt-get install xvfb
   - pip install -r requirements.txt
 
 cache:
@@ -17,4 +18,4 @@ cache:
   - lib/python3.7/site-packages
   - lib/python3.8/site-packages
 
-script: nosetests --with-coverage tests
+script: xvfb-run nosetests --with-coverage tests
