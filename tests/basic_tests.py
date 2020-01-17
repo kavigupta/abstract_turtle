@@ -3,7 +3,7 @@ from math import pi
 
 from collections import Counter
 
-from abstract_turtle import Turtle, LoggingCanvas
+from abstract_turtle import Turtle, LoggingCanvas, ForwardingCanvas
 
 from .utils import TestCase2
 
@@ -214,3 +214,15 @@ class BasicSquareTest(TestCase2):
         t.pixel_size(3)
         self.assertEqual(t.canvas_width(), 66)
         self.assertEqual(t.canvas_height(), 166)
+
+    def test_width_height_forwarding_canvas(self):
+        c = ForwardingCanvas(LoggingCanvas(100, 200))
+        t = Turtle(c)
+        self.assertEqual(t.canvas_width(), 100)
+        self.assertEqual(t.canvas_height(), 200)
+        t.pixel_size(2)
+        self.assertEqual(t.canvas_width(), 50)
+        self.assertEqual(t.canvas_height(), 100)
+        c.set_canvas(LoggingCanvas(2, 3))
+        self.assertEqual(t.canvas_width(), 1)
+        self.assertEqual(t.canvas_height(), 1)
