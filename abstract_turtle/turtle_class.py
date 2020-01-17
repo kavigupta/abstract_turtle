@@ -49,6 +49,12 @@ class BaseTurtle:
     Manages all the basic turtle functionality. The other turtle methods can be expressed in terms of these.
     """
     def __init__(self, canvas):
+        if not isinstance(canvas, Canvas):
+            raise RuntimeError("Expected the argument to Turtle to be of type {} but was {} of type {}".format(
+                Canvas.__name__,
+                canvas,
+                type(canvas).__name__
+            ))
         self.__canvas = canvas
         self.__x = 0
         self.__y = 0
