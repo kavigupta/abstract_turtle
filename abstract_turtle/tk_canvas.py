@@ -62,13 +62,12 @@ class TkCanvas(Canvas):
             box = [left_up, right_down]
             turtle.getcanvas().create_oval(box, fill=self.tr_color(color), width=0)
         else:
-            arc_to_draw = Arc(center, radius, start, end)
-            points = list(arc_to_draw.to_points())
-            self._goto_invisible(points[0])
-            for (px, py), (x, y) in zip(points, points[1:]):
-                self._setheading(atan2(y - py, x - px))
-                self._goto_visible((x, y), color, width)
-
+            sx, sy = center.x + radius * cos(start), center.y + radius * sin(start)
+            theta = start + pi/2
+            self._goto_invisible((sx, sy))
+            self._setheading(theta)
+            amount = end - start
+            turtle.circle(radius, (end - start))
 
     def fill_path(self, path, color):
         points = []
