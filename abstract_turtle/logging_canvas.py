@@ -39,6 +39,9 @@ class AbstractLoggingCanvas(Canvas):
         ])
         self.drawn_turtle = drawn_turtle
 
+    def set_speed(self, speed):
+        self.on_action(['set_speed', speed])
+
 class LoggingCanvas(AbstractLoggingCanvas):
     def __init__(self, width, height):
         super().__init__(width, height)

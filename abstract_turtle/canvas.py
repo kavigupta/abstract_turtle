@@ -78,3 +78,10 @@ class Canvas(ABC):
         Update the turtle to the given DrawnTurtle object, or remove the turtle if None is passed
         """
         pass
+
+    @abstractmethod
+    def set_speed(self, speed):
+        """
+        Set the animation speed, should be consistent with the built-in turtle module if implemented at all.
+        """
+        pass

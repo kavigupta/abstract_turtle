@@ -104,3 +104,6 @@ class TkCanvas(Canvas):
         self._setheading(drawn_turtle.heading)
         self._goto_invisible(drawn_turtle.pos)
         turtle.shapesize(drawn_turtle.stretch_wid, drawn_turtle.stretch_len)
+
+    def set_speed(self, speed):
+        turtle.speed(speed)
