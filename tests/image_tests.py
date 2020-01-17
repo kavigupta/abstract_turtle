@@ -9,7 +9,7 @@ from abstract_turtle import Turtle, PillowCanvas
 # set this to true to create the images
 REFRESH_IMAGES = False
 
-class BasicSquareTest(unittest.TestCase):
+class PillowTest(unittest.TestCase):
 
     def setUp(self, width=1000, height=1000):
         self.canvas = PillowCanvas(width, height)
