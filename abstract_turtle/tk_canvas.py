@@ -107,3 +107,9 @@ class TkCanvas(Canvas):
 
     def set_speed(self, speed):
         turtle.speed(speed)
+
+    def export(self, path):
+        """
+        Exports the current image as a postscript, to the given path
+        """
+        turtle.getscreen().getcanvas().postscript(file=path)
