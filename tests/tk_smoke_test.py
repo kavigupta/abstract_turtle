@@ -8,7 +8,6 @@ from .image_tests import PillowTest
 
 MANUAL_INSPECT = False
 
-# unfortunately this can't run in headless mode. Delete this line to visually inspect the results
 class TkSmokeTest(PillowTest):
     def setUp(self, width=1000, height=1000):
         self.canvas = TkCanvas(width, height)
