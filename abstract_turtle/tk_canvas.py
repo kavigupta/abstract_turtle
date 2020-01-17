@@ -14,10 +14,10 @@ class TkCanvas(Canvas):
     """
     Draw the given results on a pillow canvas.
     """
-    def __init__(self, width, height):
+    def __init__(self, width, height, init_hook=lambda: None):
         super().__init__(width, height)
         self.image = None
-        # TODO add init hook
+        self.__init_hook = init_hook
 
     def tr_pos(self, pos):
         x, y = pos.x, pos.y
@@ -39,11 +39,13 @@ class TkCanvas(Canvas):
         turtle.speed(speed)
 
     def _goto_visible(self, pos, color, width):
+        self.__init_hook()
         turtle.color(self.tr_color(color))
         turtle.width(width)
         self._goto(pos)
 
     def _setheading(self, heading):
+        self.__init_hook()
         turtle.radians()
         turtle.setheading(heading)
 
@@ -52,6 +54,7 @@ class TkCanvas(Canvas):
         self._goto_visible(end, color, width)
 
     def draw_circle(self, center, radius, color, width, is_filled, start, end):
+        self.__init_hook()
         if is_filled:
             assert start == 0
             assert end == 2 * pi
@@ -69,6 +72,7 @@ class TkCanvas(Canvas):
             turtle.circle(radius, (end - start))
 
     def fill_path(self, path, color):
+        self.__init_hook()
         points = []
         for movement in path:
             points += movement.to_points()
@@ -78,6 +82,7 @@ class TkCanvas(Canvas):
         turtle.getcanvas().update_idletasks()
 
     def axis_aligned_rectangle(self, bottom_left, width, height, color):
+        self.__init_hook()
         x, y = bottom_left
         blx, bly = self.tr_pos(bottom_left)
         # bounding box in pixel space, make this exactly w*h
@@ -86,13 +91,16 @@ class TkCanvas(Canvas):
         turtle.getcanvas().create_rectangle(blx, bly, tlx, tly, fill=self.tr_color(color), width=0)
 
     def set_bgcolor(self, color):
+        self.__init_hook()
         turtle.bgcolor(self.tr_color(color))
 
     def clear(self):
+        self.__init_hook()
         self.axis_aligned_rectangle(Position(-self.width / 2, -self.height / 2), self.width, self.height, Color(255, 255, 255))
         turtle.clear()
 
     def refreshed_turtle(self, drawn_turtle):
+        self.__init_hook()
         self._setheading(drawn_turtle.heading)
         self._goto_invisible(drawn_turtle.pos)
         turtle.shapesize(drawn_turtle.stretch_wid, drawn_turtle.stretch_len)
