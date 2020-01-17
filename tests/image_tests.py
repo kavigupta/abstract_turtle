@@ -27,11 +27,11 @@ class PillowTest(unittest.TestCase):
 
     def test_square(self):
         t = self.turtle
-        for _ in range(36):
+        for _ in range(9):
             for _ in range(4):
                 t.fd(100)
                 t.rt(90)
-            t.rt(10)
+            t.rt(40)
         self.assertImageEquals("test_img/squareflower.png")
 
     def test_centeredness(self):
