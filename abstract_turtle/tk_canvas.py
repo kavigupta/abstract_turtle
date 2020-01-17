@@ -17,7 +17,6 @@ class TkCanvas(Canvas):
     def __init__(self, width, height):
         super().__init__(width, height)
         self.image = None
-        turtle.colormode(255)
         # TODO add init hook
 
     def tr_pos(self, pos):
