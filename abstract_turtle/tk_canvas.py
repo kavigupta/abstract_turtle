@@ -32,11 +32,13 @@ class TkCanvas(Canvas):
 
     def _goto_invisible(self, pos):
         speed = turtle.speed()
-        turtle.speed(0)
-        turtle.pu()
-        self._goto(pos)
-        turtle.pd()
-        turtle.speed(speed)
+        try:
+            turtle.speed(0)
+            turtle.pu()
+            self._goto(pos)
+        finally:
+            turtle.pd()
+            turtle.speed(speed)
 
     def _goto_visible(self, pos, color, width):
         self.__init_hook()
