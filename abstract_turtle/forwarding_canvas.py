@@ -13,12 +13,14 @@ class ForwardingCanvas(Canvas):
     Canvas that dispatches all calls to a contained canvas
     """
     def __init__(self, canvas):
-        super().__init__(-1, -1)
+        super().__init__(canvas.width, canvas.height)
         self._canvas = canvas
 
     def set_canvas(self, canvas):
         canvas.turtle = self._canvas.turtle
         self._canvas = canvas
+        self.width = canvas.width
+        self.height = canvas.height
 
     draw_rectangular_line = _forward("draw_rectangular_line")
     draw_circle = _forward("draw_circle")
