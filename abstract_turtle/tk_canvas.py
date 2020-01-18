@@ -59,6 +59,7 @@ class TkCanvas(Canvas):
         turtle.setheading(heading)
 
     def draw_rectangular_line(self, start, end, color, width):
+        self.__ensure_init_hook()
         self._goto_invisible(start)
         self._goto_visible(end, color, width)
 
