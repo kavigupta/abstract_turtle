@@ -70,6 +70,7 @@ class BaseTurtle:
         self.__turtle_stretch_len = 1
         self.__pixel_size = 1
         self.__mode = Mode.STANDARD
+        self.__speed = 3 # default from the normal turtle module
 
         self.__update_turtle()
 
@@ -344,6 +345,13 @@ class BaseTurtle:
         self.setheading(0)
         self.__update_turtle()
         self.clear()
+
+    @turtle_method
+    def speed(self, speed=None):
+        if speed is None:
+            return self.__speed
+        self.__speed = speed
+        self.__canvas.set_speed(speed)
 
     @property
     def __current_pos(self):
