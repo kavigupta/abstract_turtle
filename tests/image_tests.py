@@ -4,7 +4,7 @@ import unittest
 import numpy as np
 from PIL import Image
 
-from abstract_turtle import Turtle, PillowCanvas
+from abstract_turtle import Turtle, PillowCanvas, ForwardingCanvas
 
 # set this to true to create the images
 REFRESH_IMAGES = False
@@ -282,3 +282,16 @@ class PillowTest(unittest.TestCase):
         t.setheading(-90)  # should stay facing west
         t.fd(200)  # should move west
         self.assertImageEquals("test_img/test_logo_mode.png")
+
+class ForwardingTest(PillowTest):
+    def setUp(self, width=1000, height=1000):
+        self.underlying_canvas = PillowCanvas(width, height)
+        self.canvas = ForwardingCanvas(self.underlying_canvas)
+        self.turtle = Turtle(self.canvas)
+
+    def assertImageEquals(self, path, hide_turtle=True):
+        if hide_turtle:
+            self.turtle.hideturtle()
+        data = self.underlying_canvas.export()
+        saved_data = np.array(Image.open(path).convert("RGBA"))
+        self.assertTrue(np.array_equal(data, saved_data))
