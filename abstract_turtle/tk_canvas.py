@@ -23,6 +23,7 @@ class TkCanvas(Canvas):
     def __ensure_init_hook(self):
         if self.__init_hook_run:
             return
+        turtle.screensize(self.width, self.height)
         self.__init_hook_run = True
         self.__init_hook()
 
