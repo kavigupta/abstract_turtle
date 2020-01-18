@@ -18,6 +18,7 @@ class Color(namedtuple('Color', ['red', 'green', 'blue'])):
             color = color[0].lower()
             if color and color[0] == "#":
                 return Color.hexcolor(color[1:])
+            color = color.replace(" ", "").replace("_", "")
             if color in COLORS:
                 return Color.of(COLORS[color])
             raise RuntimeError("Invalid color string: {!r}".format(color))
