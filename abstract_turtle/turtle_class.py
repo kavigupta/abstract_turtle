@@ -342,6 +342,7 @@ class BaseTurtle:
             raise RuntimeError("Unknown mode: {}".format(mode))
         self.goto(0, 0)
         self.setheading(0)
+        self.__update_turtle()
         self.clear()
 
     @property
