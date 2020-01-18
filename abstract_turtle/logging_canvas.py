@@ -42,6 +42,9 @@ class AbstractLoggingCanvas(Canvas):
     def set_speed(self, speed):
         self.on_action(['set_speed', speed])
 
+    def exit_on_click(self):
+        self.on_action(['exit_on_click'])
+
 class LoggingCanvas(AbstractLoggingCanvas):
     def __init__(self, width, height):
         super().__init__(width, height)

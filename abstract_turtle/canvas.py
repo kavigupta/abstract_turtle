@@ -85,3 +85,10 @@ class Canvas(ABC):
         Set the animation speed, should be consistent with the built-in turtle module if implemented at all.
         """
         pass
+
+    @abstractmethod
+    def exit_on_click(self):
+        """
+        Exits on click. For non-gui apps, this just exits with a SystemExit, but GUI based apps should change the behavior.
+        """
+        pass

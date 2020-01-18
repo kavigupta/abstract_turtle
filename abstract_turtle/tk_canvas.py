@@ -126,3 +126,6 @@ class TkCanvas(Canvas):
         Exports the current image as a postscript, to the given path
         """
         turtle.getscreen().getcanvas().postscript(file=path)
+
+    def exit_on_click(self):
+        turtle.exitonclick()

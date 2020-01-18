@@ -353,6 +353,10 @@ class BaseTurtle:
         self.__speed = speed
         self.__canvas.set_speed(speed)
 
+    @turtle_method
+    def exitonclick(self):
+        return self.__canvas.exit_on_click()
+
     @property
     def __current_pos(self):
         return Position(self.__x, self.__y)

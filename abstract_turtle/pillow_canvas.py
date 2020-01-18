@@ -91,3 +91,6 @@ class PillowCanvas(Canvas):
     def set_speed(self, speed):
         # the pillow canvas has no animation
         pass
+
+    def exit_on_click(self):
+        raise SystemExit("Exit on Click")
