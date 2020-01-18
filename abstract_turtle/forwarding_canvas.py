@@ -16,6 +16,14 @@ class ForwardingCanvas(Canvas):
         super().__init__(canvas.width, canvas.height)
         self._canvas = canvas
 
+    @property
+    def turtle(self):
+        return self._canvas.turtle
+
+    @turtle.setter
+    def turtle(self, turtle):
+        self._canvas.turtle = turtle
+
     def set_canvas(self, canvas):
         canvas.turtle = self._canvas.turtle
         self._canvas = canvas
