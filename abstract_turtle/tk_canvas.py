@@ -110,6 +110,10 @@ class TkCanvas(Canvas):
 
     def refreshed_turtle(self, drawn_turtle):
         self.__ensure_init_hook()
+        if drawn_turtle is None:
+            turtle.hideturtle()
+            return
+        turtle.showturtle()
         self._setheading(drawn_turtle.heading)
         self._goto_invisible(drawn_turtle.pos)
         turtle.shapesize(drawn_turtle.stretch_wid, drawn_turtle.stretch_len)
