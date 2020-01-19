@@ -37,3 +37,5 @@ class ForwardingCanvas(Canvas):
     set_bgcolor = _forward("set_bgcolor")
     clear = _forward("clear")
     refreshed_turtle = _forward("refreshed_turtle")
+    set_speed = _forward("set_speed")
+    exit_on_click = _forward("exit_on_click")

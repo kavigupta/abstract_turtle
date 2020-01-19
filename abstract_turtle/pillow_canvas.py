@@ -87,3 +87,10 @@ class PillowCanvas(Canvas):
     def refreshed_turtle(self, turtle):
         # no need to do stuff
         pass
+
+    def set_speed(self, speed):
+        # the pillow canvas has no animation
+        pass
+
+    def exit_on_click(self):
+        raise SystemExit("Exit on Click")
