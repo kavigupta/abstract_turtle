@@ -250,6 +250,13 @@ class PillowTest(unittest.TestCase):
         t.pixel(1.5, 0.5, "green")
         self.assertImageEquals("test_img/test_pixel.png")
 
+    def test_pixel_out_of_bounds(self):
+        t = self.turtle
+        t.pixel_size(40)
+        for x in range(21):
+            t.pixel(0, x, x * 10, 0, int(255 * (20 - x) / 20))
+        self.assertImageEquals("test_img/test_oob_pixel.png")
+
     def test_1x1_pixel(self):
         self.setUp(10, 10)
         t = self.turtle
