@@ -93,4 +93,4 @@ class PillowCanvas(Canvas):
         pass
 
     def exit_on_click(self):
-        raise SystemExit("Exit on Click")
+        pass

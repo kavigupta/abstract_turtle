@@ -89,6 +89,7 @@ class Canvas(ABC):
     @abstractmethod
     def exit_on_click(self):
         """
-        Exits on click. For non-gui apps, this just exits with a SystemExit, but GUI based apps should change the behavior.
+        Blocks until a click, upon which the GUI is closed.
+        For non-gui apps, this does nothing, but GUI based apps should change the behavior.
         """
         pass
