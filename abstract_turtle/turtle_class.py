@@ -279,6 +279,8 @@ class BaseTurtle:
         """
         End setting the polygon to fill, and fill it in.
         """
+        if self.__path is None:
+            return
         self.__canvas.fill_path(self.__path, self.__fill_color)
         self.__path = None
 

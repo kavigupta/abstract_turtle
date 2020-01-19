@@ -136,6 +136,14 @@ class BasicSquareTest(TestCase2):
             ]
         )
 
+    def test_end_fill_no_start(self):
+        t = self.turtle
+        t.end_fill() # no effect
+        self.assertContainersAlmostEqual(
+            self.canvas.log,
+            [['refreshed_turtle', [[0, 0],       0, 1, 1]]]
+        )
+
     def test_distance(self):
         t1 = self.turtle
         t1.setpos(3, 8)
