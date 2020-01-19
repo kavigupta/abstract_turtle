@@ -192,6 +192,12 @@ class BasicSquareTest(TestCase2):
         t.mode("logo")
         self.assertEqual(t.mode(), "logo")
 
+    def test_bad_pixelsize(self):
+        t = self.turtle
+        self.assertRaises(ValueError, t.pixel_size, 1.5)
+        self.assertRaises(ValueError, t.pixel_size, -1)
+        self.assertRaises(ValueError, t.pixel_size, "hi")
+
     def test_width_height_default(self):
         t = self.turtle
         self.assertEqual(t.canvas_width(), 1000)

@@ -167,6 +167,8 @@ class BaseTurtle:
 
     @turtle_method
     def pixel_size(self, pixel_size):
+        if not isinstance(pixel_size, int) or pixel_size <= 0:
+            raise ValueError("Expected a positive integer for pixel_size but got {}".format(pixel_size))
         self.__pixel_size = pixel_size
 
     @turtle_method
