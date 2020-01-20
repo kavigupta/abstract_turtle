@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="abstract_turtle", # Replace with your own username
-    version="0.2.0",
+    version="0.2.1",
     author="Kavi Gupta",
     author_email="abstract_turtle@kavigupta.org",
     description="Reimplementation of the builtin turtle module that allows for arbitrary backends.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/kavigupta/abstract_turtle",
-    download_url="https://github.com/kavigupta/abstract_turtle/archive/0.2.0.zip",
+    download_url="https://github.com/kavigupta/abstract_turtle/archive/0.2.1.zip",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3.5",
