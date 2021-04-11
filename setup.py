@@ -21,7 +21,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.5',
+    python_requires='>=3.6',
     install_requires=[],
     extras_require={
         "pillow_canvas" : ["numpy==1.18.0", "Pillow==8.2.0"]
