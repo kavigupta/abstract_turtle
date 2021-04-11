@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="abstract_turtle", # Replace with your own username
-    version="0.2.1",
+    name="abstract_turtle",  # Replace with your own username
+    version="1.0.0",
     author="Kavi Gupta",
     author_email="abstract_turtle@kavigupta.org",
     description="Reimplementation of the builtin turtle module that allows for arbitrary backends.",
@@ -21,9 +21,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
     install_requires=[],
-    extras_require={
-        "pillow_canvas" : ["numpy==1.18.0", "Pillow==8.2.0"]
-    }
+    extras_require={"pillow_canvas": ["numpy==1.18.0", "Pillow==8.2.0"]},
 )
