@@ -23,5 +23,5 @@ setuptools.setup(
     ],
     python_requires=">=3.6",
     install_requires=[],
-    extras_require={"pillow_canvas": ["numpy==1.18.0", "Pillow==8.2.0"]},
+    extras_require={"pillow_canvas": ["numpy==1.18.0", "Pillow==9.3.0"]},
 )
