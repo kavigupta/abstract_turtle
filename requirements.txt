@@ -2,7 +2,7 @@
 
 # Pillow Extension
 numpy==1.18.0
-Pillow==8.2.0
+Pillow==10.0.1
 
 # Tests
 nose==1.3.3
